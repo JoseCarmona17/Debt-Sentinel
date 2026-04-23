@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-black text-amber-500 font-mono text-[10px] tracking-widest uppercase full-width border-t-2 rounded-none border-t border-amber-500/20 flex flex-col md:flex-row justify-between items-center w-full px-8 py-12 gap-6 mt-auto">
       <div className="flex items-center">
         <Link href="/">
-          <img src="/logo2.png" alt="Debt Sentinel" className="h-10 w-auto" />
+          <img src="/logo2.png" alt="Debt Sentinel" className="h-20 w-auto object-contain" />
         </Link>
       </div>
       <div className="flex gap-4">
@@ -16,7 +16,7 @@ export default function Footer() {
         <a className="text-gray-500 hover:text-amber-500 transition-colors" href="#">Terms of Audit</a>
       </div>
       <div className="text-gray-500 text-right max-w-xs">
-        DON'T TRUST THE PROMISE. AUDIT THE PERFORMANCE. © 2024 DEBT SENTINEL
+        DON'T TRUST THE PROMISE. AUDIT THE PERFORMANCE. © 2026 DEBT SENTINEL
       </div>
     </footer>
   );

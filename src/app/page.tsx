@@ -3,8 +3,8 @@ import React from 'react';
 export default function Home() {
   return (
     <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md grid-bg">
-      
-      
+
+
 
       <main className="flex-grow w-full max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin)] py-[var(--spacing-stack-lg)] flex flex-col gap-32">
         {/* Hero Section */}
@@ -45,7 +45,7 @@ export default function Home() {
             <div className="p-6 border-r border-white/10 flex flex-col gap-2">
               <span className="font-label-mono text-label-mono text-surface-variant uppercase">Audits Completed</span>
               <span className="font-numeric-data text-numeric-data text-white">12,450+</span>
-              <span className="font-label-mono text-label-mono text-primary-container">Q3 2024</span>
+              <span className="font-label-mono text-label-mono text-primary-container">Q3 2026</span>
             </div>
             <div className="p-6 flex flex-col gap-2">
               <span className="font-label-mono text-label-mono text-surface-variant uppercase">Average Variance Detected</span>
@@ -56,8 +56,8 @@ export default function Home() {
         </section>
       </main>
 
-      
-      
+
+
     </div>
   );
 }

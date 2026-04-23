@@ -21,7 +21,7 @@ export default function TopBar() {
         <Link href="/">
           <img 
             alt="Debt Sentinel Logo" 
-            className="h-10 w-auto" 
+            className="h-16 w-auto" 
             src="/logo.png"
           />
         </Link>
