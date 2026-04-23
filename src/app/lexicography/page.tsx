@@ -7,7 +7,7 @@ export default function Page() {
 {/* comment */}
 
 {/* comment */}
-<main className="flex-grow pt-[104px] pb-stack-lg px-margin max-w-container-max mx-auto w-full relative">
+<main className="flex-grow pt-16 md:pt-[104px] pb-stack-lg px-4 md:px-margin max-w-container-max mx-auto w-full relative">
 <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 {/* comment */}
 <aside className="col-span-1 md:col-span-3 hidden md:block">

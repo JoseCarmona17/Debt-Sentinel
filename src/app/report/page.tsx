@@ -9,10 +9,10 @@ export default function Page() {
 {/* comment */}
 <main className="flex-grow pt-24 pb-16 px-8 max-w-container-max mx-auto w-full flex flex-col gap-gutter">
 {/* comment */}
-<header className="flex flex-col md:flex-row md:items-end justify-between border-b border-surface-variant pb-6 mb-4 rounded-none">
+<header className="flex flex-col md:flex-row md:items-end justify-between border-b border-surface-variant pb-6 mb-4 rounded-none gap-4">
 <div>
 <div className="font-label-mono text-label-mono text-primary-container uppercase mb-2">System Generated</div>
-<h1 className="font-headline-display text-headline-display text-on-surface uppercase tracking-tight">Vulnerability Report™</h1>
+<h1 className="font-headline-display text-4xl sm:text-headline-display text-on-surface uppercase tracking-tight">Vulnerability Report™</h1>
 </div>
 <div className="text-right mt-4 md:mt-0 font-label-mono text-label-mono text-on-surface-variant uppercase flex flex-col gap-1 border border-surface-variant p-2 bg-surface-container-low rounded-none">
 <span>Subject: ACCT-8942-B</span>

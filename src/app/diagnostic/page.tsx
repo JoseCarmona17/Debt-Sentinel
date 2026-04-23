@@ -132,11 +132,11 @@ export default function Page() {
 <button className="mt-6 border border-white text-white font-label-mono text-[12px] uppercase tracking-widest px-6 py-2 hover:bg-white hover:text-black transition-none" type="button">Select File</button>
 </div>
 {/* comment */}
-<div className="flex items-center justify-end gap-4 mt-8 pt-8 border-t border-surface-bright">
-<button className="border border-surface-bright text-on-surface-variant font-label-mono text-[12px] uppercase tracking-widest px-6 py-3 hover:text-white hover:border-white transition-none" type="button">
+<div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-4 mt-8 pt-8 border-t border-surface-bright">
+<button className="w-full sm:w-auto border border-surface-bright text-on-surface-variant font-label-mono text-[12px] uppercase tracking-widest px-6 py-3 hover:text-white hover:border-white transition-none" type="button">
                                 Clear Matrix
                             </button>
-<button className="bg-primary-container text-black font-label-mono text-[12px] font-bold uppercase tracking-widest px-8 py-3 hover:bg-white transition-none flex items-center gap-2 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none translate-x-0 translate-y-0 hover:translate-x-[2px] hover:translate-y-[2px]" type="button">
+<button className="w-full sm:w-auto justify-center bg-primary-container text-black font-label-mono text-[12px] font-bold uppercase tracking-widest px-8 py-3 hover:bg-white transition-none flex items-center gap-2 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none translate-x-0 translate-y-0 hover:translate-x-[2px] hover:translate-y-[2px]" type="button">
                                 Inject Verification
                                 <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
 </button>

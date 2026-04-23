@@ -9,12 +9,12 @@ export default function Page() {
 {/* comment */}
 <main className="flex-grow pt-[calc(64px+32px)] px-8 pb-32 max-w-container-max mx-auto w-full">
 {/* comment */}
-<div className="mb-stack-lg border-b border-white/10 pb-stack-md flex justify-between items-end">
+<div className="mb-stack-lg border-b border-white/10 pb-stack-md flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
 <div>
 <h1 className="font-headline-display text-headline-display text-white mb-2">Sentinel Watch™</h1>
 <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Real-time monitoring and compliance verification for Protected Members.</p>
 </div>
-<div className="text-right">
+<div className="text-left sm:text-right w-full sm:w-auto">
 <div className="font-label-mono text-label-mono text-primary-container mb-1 uppercase">System Status</div>
 <div className="inline-flex items-center space-x-2 bg-surface-container-high px-3 py-1 border border-primary-container">
 <span className="w-2 h-2 rounded-none bg-primary-container animate-pulse"></span>
@@ -42,29 +42,29 @@ export default function Page() {
 <h2 className="font-headline-md text-headline-md text-white mb-6 border-b border-white/10 pb-2">Compliance Alerts™</h2>
 <div className="space-y-4">
 {/* comment */}
-<div className="flex items-center justify-between p-4 bg-surface-container-low border border-primary-container/30 border-l-4 border-l-error">
-<div className="flex items-center space-x-4">
-<span className="material-symbols-outlined text-error" style={{ fontVariationSettings: '"FILL" 1' }}>warning</span>
+<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-surface-container-low border border-primary-container/30 border-l-4 border-l-error gap-4">
+<div className="flex items-start sm:items-center space-x-4">
+<span className="material-symbols-outlined text-error mt-1 sm:mt-0" style={{ fontVariationSettings: '"FILL" 1' }}>warning</span>
 <div>
 <div className="font-label-mono text-label-mono text-error uppercase mb-1">Variance Detected</div>
 <div className="font-body-md text-body-md text-white">Unusual liquidity drain in Member Node #7482</div>
 </div>
 </div>
-<div className="text-right">
-<div className="font-label-mono text-label-mono text-white/60 mb-1">08:14:22 UTC</div>
-<button className="font-label-mono text-label-mono text-primary-container border border-primary-container px-3 py-1 hover:bg-primary-container hover:text-black transition-none uppercase">Investigate</button>
+<div className="text-left sm:text-right w-full sm:w-auto">
+<div className="font-label-mono text-label-mono text-white/60 mb-2 sm:mb-1">08:14:22 UTC</div>
+<button className="font-label-mono text-label-mono text-primary-container border border-primary-container px-3 py-2 sm:py-1 hover:bg-primary-container hover:text-black transition-none uppercase w-full sm:w-auto">Investigate</button>
 </div>
 </div>
 {/* comment */}
-<div className="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant">
-<div className="flex items-center space-x-4">
-<span className="material-symbols-outlined text-primary-container" style={{ fontVariationSettings: '"FILL" 1' }}>info</span>
+<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-surface-container-low border border-outline-variant gap-4">
+<div className="flex items-start sm:items-center space-x-4">
+<span className="material-symbols-outlined text-primary-container mt-1 sm:mt-0" style={{ fontVariationSettings: '"FILL" 1' }}>info</span>
 <div>
 <div className="font-label-mono text-label-mono text-primary-container uppercase mb-1">Audit Initiated</div>
 <div className="font-body-md text-body-md text-white">Routine scan of collateral pools commencing</div>
 </div>
 </div>
-<div className="text-right">
+<div className="text-left sm:text-right w-full sm:w-auto">
 <div className="font-label-mono text-label-mono text-white/60 mb-1">07:55:00 UTC</div>
 <span className="font-label-mono text-label-mono text-white/40 uppercase">In Progress</span>
 </div>
