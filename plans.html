@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentinel Protection Plans</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&amp;family=Space+Grotesk:wght@500;600&amp;family=Work+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#515253",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#e2e2e2",
+                        "tertiary": "#e2e2e2",
+                        "primary-fixed-dim": "#ffbb18",
+                        "secondary-container": "#474747",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-primary-fixed": "#271900",
+                        "on-primary-container": "#6c4d00",
+                        "tertiary-container": "#c5c6c6",
+                        "primary": "#ffdea5",
+                        "primary-fixed": "#ffdea7",
+                        "outline-variant": "#504533",
+                        "background": "#131313",
+                        "on-secondary-fixed-variant": "#474747",
+                        "surface-container-highest": "#353535",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "surface-tint": "#ffbb18",
+                        "primary-container": "#ffba11",
+                        "on-background": "#e5e2e1",
+                        "secondary": "#c6c6c6",
+                        "on-surface": "#e5e2e1",
+                        "inverse-surface": "#e5e2e1",
+                        "inverse-primary": "#7c5800",
+                        "surface-variant": "#353535",
+                        "surface-bright": "#393939",
+                        "on-surface-variant": "#d5c4ac",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-primary": "#412d00",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-dim": "#131313",
+                        "outline": "#9d8f78",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary": "#303030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container": "#20201f",
+                        "surface": "#131313",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-secondary-container": "#b5b5b5",
+                        "on-tertiary": "#2f3131",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-max": "1440px",
+                        "stack-lg": "48px",
+                        "margin": "32px",
+                        "stack-md": "24px"
+                    },
+                    "fontFamily": {
+                        "numeric-data": ["Space Grotesk"],
+                        "label-mono": ["Space Grotesk"],
+                        "headline-md": ["Inter"],
+                        "headline-display": ["Inter"],
+                        "body-md": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "numeric-data": ["20px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "label-mono": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grid-bg {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .zebra-row:nth-child(even) {
+            background-color: #1A1A1A;
+        }
+        .zebra-row:nth-child(odd) {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col overflow-x-hidden font-body-md grid-bg selection:bg-primary-container selection:text-black">
+<!-- TopAppBar Component -->
+<header class="flex justify-between items-center w-full px-8 h-16 bg-black z-50 docked full-width top-0 border-b-2 border-amber-500">
+<div class="flex items-center gap-4">
+<img alt="DEBT SENTINEL" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uhIzeM1kUBtmp05RIPks4RjDnOoEphfuRAdfKp5_PwwXKq-2wLdLvU7H5iQS3KSp3zT95UEQuPHX01G3pmgKSYwHEmr4lAWAEjn649gwPBWdYaJjpMyLrQ6fk0LhkSMwP0fEACVmodZ3Jy3mYthy1GU_3KPISxcE8qy-m1ouYLoonOmP1_SOy4hFhk6UVlajR5mO4vkJQO_vYsBPbbB_FvYb7pkDsm_Obw9zjYadC2So-JVl6TlqABdN3x_-rsUKmdCLenvz9bT6w"/>
+</div>
+<nav class="hidden md:flex items-center gap-8 font-mono uppercase tracking-tight text-xs">
+<a class="text-amber-500 border-b-2 border-amber-500 pb-2 transition-none hover:bg-zinc-900" href="#">Diagnostic</a>
+<a class="text-zinc-500 hover:text-white pb-2 transition-none hover:bg-zinc-900" href="#">Vulnerability Report</a>
+<a class="text-zinc-500 hover:text-white pb-2 transition-none hover:bg-zinc-900" href="#">Sentinel Watch</a>
+</nav>
+<div class="flex items-center gap-4 text-zinc-500">
+<button class="material-symbols-outlined p-2 hover:bg-zinc-900 transition-none active:scale-100 active:bg-amber-500 active:text-black">notifications</button>
+<button class="material-symbols-outlined p-2 hover:bg-zinc-900 transition-none active:scale-100 active:bg-amber-500 active:text-black">account_balance</button>
+<button class="material-symbols-outlined p-2 hover:bg-zinc-900 transition-none active:scale-100 active:bg-amber-500 active:text-black">settings</button>
+<button class="bg-amber-500 text-black font-mono px-4 py-1.5 uppercase text-[10px] font-bold ml-4 active:scale-100">SYSTEM AUDIT</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 flex flex-col min-h-screen">
+<!-- Top App Bar (Web - Search/Actions) -->
+<div class="hidden md:flex justify-between items-center w-full px-8 py-4 h-16 bg-black border-b border-white/10 z-30">
+<div class="flex items-center text-on-surface-variant font-label-mono gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="shield">shield</span>
+<span>/ PROTECTION TIER CONFIGURATION</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<input class="bg-transparent border-b border-white/20 text-white font-label-mono py-1 px-2 focus:outline-none focus:border-primary-container focus:ring-0 placeholder:text-white/30 w-64 rounded-none" placeholder="SEARCH PROTOCOLS..." type="text"/>
+<span class="material-symbols-outlined absolute right-0 top-1 text-white/50" data-icon="search">search</span>
+</div>
+<button class="text-white/60 hover:text-white transition-colors p-2"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-8 md:p-margin flex flex-col gap-stack-lg max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<header class="flex justify-between items-center w-full px-8 h-16 bg-black z-50 docked full-width top-0 border-b-2 border-amber-500">
+<div class="flex items-center gap-4">
+<img alt="DEBT SENTINEL" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uhIzeM1kUBtmp05RIPks4RjDnOoEphfuRAdfKp5_PwwXKq-2wLdLvU7H5iQS3KSp3zT95UEQuPHX01G3pmgKSYwHEmr4lAWAEjn649gwPBWdYaJjpMyLrQ6fk0LhkSMwP0fEACVmodZ3Jy3mYthy1GU_3KPISxcE8qy-m1ouYLoonOmP1_SOy4hFhk6UVlajR5mO4vkJQO_vYsBPbbB_FvYb7pkDsm_Obw9zjYadC2So-JVl6TlqABdN3x_-rsUKmdCLenvz9bT6w"/>
+</div>
+<nav class="hidden md:flex items-center gap-8 font-mono uppercase tracking-tight text-xs">
+<a class="text-amber-500 border-b-2 border-amber-500 pb-2 transition-none hover:bg-zinc-900" href="#">Diagnostic</a>
+<a class="text-zinc-500 hover:text-white pb-2 transition-none hover:bg-zinc-900" href="#">Vulnerability Report</a>
+<a class="text-zinc-500 hover:text-white pb-2 transition-none hover:bg-zinc-900" href="#">Sentinel Watch</a>
+</nav>
+<div class="flex items-center gap-4 text-zinc-500">
+<button class="material-symbols-outlined p-2 hover:bg-zinc-900 transition-none active:scale-100 active:bg-amber-500 active:text-black">notifications</button>
+<button class="material-symbols-outlined p-2 hover:bg-zinc-900 transition-none active:scale-100 active:bg-amber-500 active:text-black">account_balance</button>
+<button class="material-symbols-outlined p-2 hover:bg-zinc-900 transition-none active:scale-100 active:bg-amber-500 active:text-black">settings</button>
+<button class="bg-amber-500 text-black font-mono px-4 py-1.5 uppercase text-[10px] font-bold ml-4 active:scale-100">SYSTEM AUDIT</button>
+</div>
+</header>
+<!-- Pricing / Protection Tiers -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Tier 1: Standard Audit -->
+<div class="flex flex-col border border-white/10 bg-surface-container-lowest relative group hover:border-white/30 transition-colors">
+<div class="p-6 border-b border-white/10 flex flex-col gap-4">
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">TIER 01</div>
+<h3 class="font-headline-md text-headline-md text-white uppercase">STANDARD AUDIT</h3>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-numeric-data text-[32px] font-bold text-white leading-none">0.25%</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">/ AUM ANNUALLY</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant h-16">Baseline operational verification and quarterly risk assessment for stable portfolios.</p>
+</div>
+<div class="p-6 flex-1 flex flex-col gap-6">
+<ul class="flex flex-col gap-4 font-body-md text-sm text-on-surface">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="check_box">check_box</span>
+<span>Quarterly Comprehensive Audit</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="check_box">check_box</span>
+<span>Standard Variance Reporting</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="check_box">check_box</span>
+<span>T+3 Settlement Verification</span>
+</li>
+<li class="flex items-start gap-3 text-white/30">
+<span class="material-symbols-outlined text-[18px] mt-0.5" data-icon="close">close</span>
+<span>Real-time API Access</span>
+</li>
+</ul>
+</div>
+<div class="p-6 pt-0 mt-auto">
+<button class="w-full border border-white/20 text-white font-label-mono font-bold uppercase py-3 hover:bg-white/5 transition-colors rounded-none">SELECT STANDARD</button>
+</div>
+</div>
+<!-- Tier 2: Active Sentinel (Featured) -->
+<div class="flex flex-col border-2 border-primary-container bg-surface-container-lowest relative shadow-[4px_4px_0px_0px_#FFBA11] -translate-y-2">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary-container text-black font-label-mono font-bold uppercase px-4 py-1 text-[10px]">
+                        RECOMMENDED DEPLOYMENT
+                    </div>
+<div class="p-6 border-b border-white/10 flex flex-col gap-4 bg-[#1A1A1A]">
+<div class="font-label-mono text-label-mono text-primary-container uppercase tracking-widest">TIER 02</div>
+<h3 class="font-headline-md text-headline-md text-primary-container uppercase">ACTIVE SENTINEL</h3>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-numeric-data text-[32px] font-bold text-white leading-none">0.85%</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">/ AUM ANNUALLY</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant h-16">Continuous monitoring protocol. Instant anomaly detection and automated defensive posturing.</p>
+</div>
+<div class="p-6 flex-1 flex flex-col gap-6 bg-[#0a0a0a]">
+<ul class="flex flex-col gap-4 font-body-md text-sm text-on-surface">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-white font-semibold">Continuous Real-time Monitoring</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Sub-second Anomaly Alerts</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>T+0 Settlement Verification</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Full REST &amp; WebSocket API Access</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Automated Covenant Enforcement</span>
+</li>
+</ul>
+</div>
+<div class="p-6 pt-0 mt-auto bg-[#0a0a0a]">
+<button class="w-full bg-primary-container text-black font-label-mono font-bold uppercase py-3 hover:bg-[#e6a600] transition-colors rounded-none">DEPLOY SENTINEL</button>
+</div>
+</div>
+<!-- Tier 3: Enterprise Oversight -->
+<div class="flex flex-col border border-white/10 bg-surface-container-lowest relative group hover:border-white/30 transition-colors">
+<div class="p-6 border-b border-white/10 flex flex-col gap-4">
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">TIER 03</div>
+<h3 class="font-headline-md text-headline-md text-white uppercase">ENTERPRISE OVERSIGHT</h3>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-numeric-data text-[32px] font-bold text-white leading-none">CUSTOM</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase"></span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant h-16">Bespoke auditing architecture for complex, multi-tranche institutional debt structures.</p>
+</div>
+<div class="p-6 flex-1 flex flex-col gap-6">
+<ul class="flex flex-col gap-4 font-body-md text-sm text-on-surface">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-white text-[18px] mt-0.5" data-icon="done_all">done_all</span>
+<span>All Active Sentinel Features</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-white text-[18px] mt-0.5" data-icon="done_all">done_all</span>
+<span>Dedicated Quantitative Analyst</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-white text-[18px] mt-0.5" data-icon="done_all">done_all</span>
+<span>Custom Risk Modeling Engine</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-white text-[18px] mt-0.5" data-icon="done_all">done_all</span>
+<span>On-premise Deployment Option</span>
+</li>
+</ul>
+</div>
+<div class="p-6 pt-0 mt-auto">
+<button class="w-full border border-[#333333] text-white font-label-mono font-bold uppercase py-3 hover:border-white transition-colors rounded-none">CONTACT SYNDICATE</button>
+</div>
+</div>
+</section>
+<!-- Technical Comparison Data Table -->
+<section class="mt-stack-lg border border-white/10 bg-surface-container-lowest overflow-hidden flex flex-col">
+<header class="flex justify-between items-center w-full px-8 h-16 bg-black z-50 docked full-width top-0 border-b-2 border-amber-500">
+<div class="flex items-center gap-4">
+<img alt="DEBT SENTINEL" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uhIzeM1kUBtmp05RIPks4RjDnOoEphfuRAdfKp5_PwwXKq-2wLdLvU7H5iQS3KSp3zT95UEQuPHX01G3pmgKSYwHEmr4lAWAEjn649gwPBWdYaJjpMyLrQ6fk0LhkSMwP0fEACVmodZ3Jy3mYthy1GU_3KPISxcE8qy-m1ouYLoonOmP1_SOy4hFhk6UVlajR5mO4vkJQO_vYsBPbbB_FvYb7pkDsm_Obw9zjYadC2So-JVl6TlqABdN3x_-rsUKmdCLenvz9bT6w"/>
+</div>
+<nav class="hidden md:flex items-center gap-8 font-mono uppercase tracking-tight text-xs">
+<a class="text-amber-500 border-b-2 border-amber-500 pb-2 transition-none hover:bg-zinc-900" href="#">Diagnostic</a>
+<a class="text-zinc-500 hover:text-white pb-2 transition-none hover:bg-zinc-900" href="#">Vulnerability Report</a>
+<a class="text-zinc-500 hover:text-white pb-2 transition-none hover:bg-zinc-900" href="#">Sentinel Watch</a>
+</nav>
+<div class="flex items-center gap-4 text-zinc-500">
+<button class="material-symbols-outlined p-2 hover:bg-zinc-900 transition-none active:scale-100 active:bg-amber-500 active:text-black">notifications</button>
+<button class="material-symbols-outlined p-2 hover:bg-zinc-900 transition-none active:scale-100 active:bg-amber-500 active:text-black">account_balance</button>
+<button class="material-symbols-outlined p-2 hover:bg-zinc-900 transition-none active:scale-100 active:bg-amber-500 active:text-black">settings</button>
+<button class="bg-amber-500 text-black font-mono px-4 py-1.5 uppercase text-[10px] font-bold ml-4 active:scale-100">SYSTEM AUDIT</button>
+</div>
+</header>
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="border-b border-white/20 bg-black font-label-mono text-label-mono text-primary-container uppercase">
+<th class="p-4 font-medium w-1/4">Metric / Parameter</th>
+<th class="p-4 font-medium w-1/4 border-l border-white/10">Standard</th>
+<th class="p-4 font-medium w-1/4 border-l border-white/10 bg-primary-container/10">Active Sentinel</th>
+<th class="p-4 font-medium w-1/4 border-l border-white/10">Enterprise</th>
+</tr>
+</thead>
+<tbody class="font-numeric-data text-sm text-white">
+<tr class="zebra-row border-b border-white/5">
+<td class="p-4 font-body-md text-on-surface-variant">Audit Frequency</td>
+<td class="p-4 border-l border-white/10">Quarterly</td>
+<td class="p-4 border-l border-white/10 bg-primary-container/5 text-primary-container font-bold">Continuous (ms)</td>
+<td class="p-4 border-l border-white/10">Continuous (ms)</td>
+</tr>
+<tr class="zebra-row border-b border-white/5">
+<td class="p-4 font-body-md text-on-surface-variant">Data Retention</td>
+<td class="p-4 border-l border-white/10">1 Year</td>
+<td class="p-4 border-l border-white/10 bg-primary-container/5">5 Years (Immutable)</td>
+<td class="p-4 border-l border-white/10">Indefinite (Cold Storage)</td>
+</tr>
+<tr class="zebra-row border-b border-white/5">
+<td class="p-4 font-body-md text-on-surface-variant">API Rate Limit</td>
+<td class="p-4 border-l border-white/10 text-white/30">N/A</td>
+<td class="p-4 border-l border-white/10 bg-primary-container/5">10,000 req/sec</td>
+<td class="p-4 border-l border-white/10">Unlimited</td>
+</tr>
+<tr class="zebra-row border-b border-white/5">
+<td class="p-4 font-body-md text-on-surface-variant">Automated Remediation</td>
+<td class="p-4 border-l border-white/10 text-white/30">Manual Only</td>
+<td class="p-4 border-l border-white/10 bg-primary-container/5 text-primary-container">Smart Contract Trigger</td>
+<td class="p-4 border-l border-white/10">Custom Logic Engine</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full py-4 px-8 flex justify-between items-center border-t border-zinc-800 bg-black">
+<div class="text-amber-500 font-mono text-[10px] uppercase">
+<span class="font-bold">DEBT SENTINEL</span> | Don't trust the promise. Audit the performance.
+  </div>
+<div class="flex items-center gap-6 font-mono text-[10px] uppercase">
+<a class="text-zinc-600 hover:text-amber-500" href="#">Terms of Audit</a>
+<a class="text-zinc-600 hover:text-amber-500" href="#">System Status</a>
+<a class="text-zinc-600 hover:text-amber-500" href="#">Security Protocol</a>
+</div>
+</footer>
+</main>
+</body></html>

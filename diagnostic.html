@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Diagnostic - Debt Sentinel</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;family=Space+Grotesk:wght@500;600&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#ffbb18",
+                        "on-tertiary-container": "#515253",
+                        "surface-variant": "#353535",
+                        "on-background": "#e5e2e1",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "background": "#131313",
+                        "primary": "#ffdea5",
+                        "on-tertiary": "#2f3131",
+                        "on-surface-variant": "#d5c4ac",
+                        "surface-dim": "#131313",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-secondary": "#303030",
+                        "primary-container": "#ffba11",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#412d00",
+                        "surface-container-highest": "#353535",
+                        "surface": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-container": "#474747",
+                        "on-primary-fixed": "#271900",
+                        "outline": "#9d8f78",
+                        "surface-container": "#20201f",
+                        "primary-fixed": "#ffdea7",
+                        "on-secondary-container": "#b5b5b5",
+                        "outline-variant": "#504533",
+                        "tertiary-container": "#c5c6c6",
+                        "surface-tint": "#ffbb18",
+                        "surface-bright": "#393939",
+                        "inverse-primary": "#7c5800",
+                        "on-primary-container": "#6c4d00",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary": "#c6c6c6",
+                        "error": "#ffb4ab",
+                        "tertiary": "#e2e2e2",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "margin": "32px",
+                        "stack-sm": "8px",
+                        "stack-lg": "48px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-mono": ["Space Grotesk"],
+                        "headline-display": ["Inter"],
+                        "numeric-data": ["Space Grotesk"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-mono": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "numeric-data": ["20px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Specific overrides to ensure strict brutalist feel from instructions */
+        * { border-radius: 0 !important; }
+        .grid-bg {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="bg-black text-on-surface antialiased selection:bg-primary-container selection:text-black min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full border-b border-white/10 flex justify-between items-center px-8 h-16 z-50 bg-black transition-none">
+<div class="flex items-center gap-12">
+<div class="font-black text-xl tracking-tighter text-amber-400 flex items-center"><img alt="DEBT SENTINEL" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhIzeM1kUBtmp05RIPks4RjDnOoEphfuRAdfKp5_PwwXKq-2wLdLvU7H5iQS3KSp3zT95UEQuPHX01G3pmgKSYwHEmr4lAWAEjn649gwPBWdYaJjpMyLrQ6fk0LhkSMwP0fEACVmodZ3Jy3mYthy1GU_3KPISxcE8qy-m1ouYLoonOmP1_SOy4hFhk6UVlajR5mO4vkJQO_vYsBPbbB_FvYb7pkDsm_Obw9zjYadC2So-JVl6TlqABdN3x_-rsUKmdCLenvz9bT6w"/></div>
+<div class="hidden md:flex items-center h-full space-x-6 font-mono uppercase tracking-widest text-xs">
+<a class="h-16 flex items-center px-2 transition-none hover:bg-amber-400 hover:text-black text-amber-400 border-b border-amber-400" href="#">Diagnostic</a>
+<a class="h-16 flex items-center px-2 transition-none hover:bg-amber-400 hover:text-black text-white/60" href="#">Vulnerability Report</a>
+<a class="h-16 flex items-center px-2 transition-none hover:bg-amber-400 hover:text-black text-white/60" href="#">Sentinel Watch</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-white/60 cursor-pointer hover:text-amber-400 transition-none">search</span>
+<button class="bg-amber-400 text-black font-mono uppercase tracking-widest text-xs px-4 py-2 hover:bg-white transition-none font-bold">
+                AUDIT SYSTEM
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas with Technical Grid Background -->
+<main class="flex-grow pt-24 pb-16 grid-bg">
+<div class="max-w-container-max mx-auto px-margin">
+<!-- Page Header -->
+<header class="mb-stack-lg border-b border-surface-bright pb-6">
+<h1 class="font-headline-display text-headline-display text-white mb-2 uppercase tracking-tight">The Diagnostic</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">Secure intake terminal for program verification. All inputs are logged and structurally analyzed for variance against creditor norms.</p>
+</header>
+<!-- Diagnostic Interface Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-margin items-start">
+<!-- Left Sidebar: Progress / Steps (Col-span 3) -->
+<aside class="md:col-span-3 border border-surface-bright bg-surface-container-low p-6 shadow-[2px_2px_0px_0px_rgba(255,186,17,0)] hover:shadow-[2px_2px_0px_0px_rgba(255,186,17,1)] transition-none duration-0">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-6 tracking-widest border-b border-surface-bright pb-2">Intake Sequence</h2>
+<nav class="flex flex-col gap-4">
+<!-- Active Step -->
+<div class="flex items-start gap-3 cursor-default">
+<div class="w-6 h-6 flex-shrink-0 bg-primary-container text-black flex items-center justify-center font-numeric-data text-[12px] font-bold">01</div>
+<div>
+<p class="font-label-mono text-label-mono text-primary-container uppercase">Contract Verification</p>
+<p class="font-body-md text-[13px] text-on-surface-variant mt-1 leading-tight">Awaiting input parameters.</p>
+</div>
+</div>
+<!-- Inactive Step -->
+<div class="flex items-start gap-3 opacity-50 cursor-not-allowed">
+<div class="w-6 h-6 flex-shrink-0 border border-on-surface-variant text-on-surface-variant flex items-center justify-center font-numeric-data text-[12px]">02</div>
+<div>
+<p class="font-label-mono text-label-mono text-on-surface uppercase">Payment History</p>
+</div>
+</div>
+<!-- Inactive Step -->
+<div class="flex items-start gap-3 opacity-50 cursor-not-allowed">
+<div class="w-6 h-6 flex-shrink-0 border border-on-surface-variant text-on-surface-variant flex items-center justify-center font-numeric-data text-[12px]">03</div>
+<div>
+<p class="font-label-mono text-label-mono text-on-surface uppercase">Settlement Ledger</p>
+</div>
+</div>
+</nav>
+<div class="mt-8 pt-6 border-t border-surface-bright">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-mono text-[10px] text-on-surface-variant uppercase">Session ID</span>
+<span class="font-numeric-data text-[12px] text-white">#DS-993-A4X</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-mono text-[10px] text-on-surface-variant uppercase">Security Protocol</span>
+<span class="font-label-mono text-[10px] text-green-500 uppercase">Active</span>
+</div>
+</div>
+</aside>
+<!-- Right Column: Active Form Area (Col-span 9) -->
+<section class="md:col-span-9 border border-white bg-surface-container-low p-8 relative">
+<!-- Form Header -->
+<div class="flex justify-between items-start mb-8 pb-4 border-b border-surface-bright">
+<div>
+<h2 class="font-headline-md text-headline-md text-white">Contract Parameters</h2>
+</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase text-right">
+<span class="block text-primary-container">Status: Unverified</span>
+<span class="block mt-1 opacity-60">Req. Origin Data</span>
+</div>
+</div>
+<!-- Terminal Instruction Block -->
+<div class="bg-black border border-primary-container p-4 mb-8 flex items-start gap-4">
+<span class="material-symbols-outlined text-primary-container mt-0.5">terminal</span>
+<div>
+<p class="font-label-mono text-label-mono text-primary-container uppercase mb-2">System Directive: Raw Data Required</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Input exact figures as they appear on the original creditor documentation. Do not round numbers. Do not estimate dates. Inaccuracies at this stage will trigger a variance alert during the settlement audit phase.</p>
+</div>
+</div>
+<!-- Form Inputs Grid -->
+<form class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Creditor Name -->
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface uppercase flex justify-between">
+                                    Creditor Entity Name
+                                    <span class="text-error">*</span>
+</label>
+<input class="bg-black border border-surface-bright text-white font-body-md p-3 focus:outline-none focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_1px_rgba(255,186,17,1)] transition-none w-full placeholder:text-surface-variant" placeholder="e.g. SYCHRONY BANK" type="text"/>
+</div>
+<!-- Account Number -->
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface uppercase flex justify-between">
+                                    Full Account Identifier
+                                    <span class="text-error">*</span>
+</label>
+<input class="bg-black border border-surface-bright text-white font-numeric-data p-3 focus:outline-none focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_1px_rgba(255,186,17,1)] transition-none w-full placeholder:text-surface-variant tracking-wider" placeholder="XXXX-XXXX-XXXX-XXXX" type="text"/>
+</div>
+<!-- Original Balance -->
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface uppercase flex justify-between">
+                                    Original Enrolled Balance
+                                    <span class="text-error">*</span>
+</label>
+<div class="relative">
+<span class="absolute left-3 top-3 font-numeric-data text-on-surface-variant">$</span>
+<input class="bg-black border border-surface-bright text-white font-numeric-data p-3 pl-8 focus:outline-none focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_1px_rgba(255,186,17,1)] transition-none w-full placeholder:text-surface-variant" placeholder="0.00" type="number"/>
+</div>
+</div>
+<!-- Current Balance -->
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface uppercase flex justify-between">
+                                    Current Claimed Balance
+                                    <span class="text-error">*</span>
+</label>
+<div class="relative">
+<span class="absolute left-3 top-3 font-numeric-data text-on-surface-variant">$</span>
+<input class="bg-black border border-surface-bright text-white font-numeric-data p-3 pl-8 focus:outline-none focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_1px_rgba(255,186,17,1)] transition-none w-full placeholder:text-surface-variant" placeholder="0.00" type="number"/>
+</div>
+</div>
+<!-- Enrollment Date -->
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface uppercase flex justify-between">
+                                    Date of Enrollment
+                                    <span class="text-error">*</span>
+</label>
+<input class="bg-black border border-surface-bright text-white font-numeric-data p-3 focus:outline-none focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_1px_rgba(255,186,17,1)] transition-none w-full" style="color-scheme: dark;" type="date"/>
+</div>
+</div>
+<!-- File Upload Area -->
+<div class="mt-8 border-2 border-dashed border-surface-bright bg-black p-8 text-center hover:border-primary-container hover:bg-surface-container-low transition-none cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4 group-hover:text-primary-container">upload_file</span>
+<p class="font-label-mono text-label-mono text-white uppercase mb-2">Upload Original Contract Documentation</p>
+<p class="font-body-md text-[14px] text-on-surface-variant">Drag and drop PDF or encrypted image files. Max 50MB.</p>
+<button class="mt-6 border border-white text-white font-label-mono text-[12px] uppercase tracking-widest px-6 py-2 hover:bg-white hover:text-black transition-none" type="button">Select File</button>
+</div>
+<!-- Action Footer -->
+<div class="flex items-center justify-end gap-4 mt-8 pt-8 border-t border-surface-bright">
+<button class="border border-surface-bright text-on-surface-variant font-label-mono text-[12px] uppercase tracking-widest px-6 py-3 hover:text-white hover:border-white transition-none" type="button">
+                                Clear Matrix
+                            </button>
+<button class="bg-primary-container text-black font-label-mono text-[12px] font-bold uppercase tracking-widest px-8 py-3 hover:bg-white transition-none flex items-center gap-2 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none translate-x-0 translate-y-0 hover:translate-x-[2px] hover:translate-y-[2px]" type="button">
+                                Inject Verification
+                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</form>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-amber-400/20 bg-black flex flex-col md:flex-row justify-between items-center px-8 py-4 transition-none mt-auto">
+<div class="font-mono text-[10px] uppercase tracking-tight text-amber-400 mb-4 md:mb-0">
+            © 2024 DEBT SENTINEL | AUDIT THE PERFORMANCE.
+        </div>
+<div class="flex gap-6 font-mono text-[10px] uppercase tracking-tight">
+<a class="text-white/40 hover:text-amber-400 underline transition-none" href="#">Regulatory Disclosures</a>
+<a class="text-white/40 hover:text-amber-400 underline transition-none" href="#">Data Integrity Protocol</a>
+<a class="text-white/40 hover:text-amber-400 underline transition-none" href="#">Security Log</a>
+</div>
+</footer>
+</body></html>

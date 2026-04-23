@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentinel Watch™</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;family=Space+Grotesk:wght@500;600&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#ffbb18",
+                        "on-tertiary-container": "#515253",
+                        "surface-variant": "#353535",
+                        "on-background": "#e5e2e1",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "background": "#131313",
+                        "primary": "#ffdea5",
+                        "on-tertiary": "#2f3131",
+                        "on-surface-variant": "#d5c4ac",
+                        "surface-dim": "#131313",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-secondary": "#303030",
+                        "primary-container": "#ffba11",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#412d00",
+                        "surface-container-highest": "#353535",
+                        "surface": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-container": "#474747",
+                        "on-primary-fixed": "#271900",
+                        "outline": "#9d8f78",
+                        "surface-container": "#20201f",
+                        "primary-fixed": "#ffdea7",
+                        "on-secondary-container": "#b5b5b5",
+                        "outline-variant": "#504533",
+                        "tertiary-container": "#c5c6c6",
+                        "surface-tint": "#ffbb18",
+                        "surface-bright": "#393939",
+                        "inverse-primary": "#7c5800",
+                        "on-primary-container": "#6c4d00",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary": "#c6c6c6",
+                        "error": "#ffb4ab",
+                        "tertiary": "#e2e2e2",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "margin": "32px",
+                        "stack-sm": "8px",
+                        "stack-lg": "48px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-mono": ["Space Grotesk"],
+                        "headline-display": ["Inter"],
+                        "numeric-data": ["Space Grotesk"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-mono": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "numeric-data": ["20px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grid-pattern {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .data-table-row:nth-child(even) {
+            background-color: theme('colors.surface-container-low');
+        }
+        .hard-shadow {
+            box-shadow: 2px 2px 0px 0px theme('colors.primary-container');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col grid-pattern">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full border-b border-white/10 flex justify-between items-center px-8 h-16 z-50 bg-black">
+<div class="flex items-center space-x-8">
+<img alt="DEBT SENTINEL" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhIzeM1kUBtmp05RIPks4RjDnOoEphfuRAdfKp5_PwwXKq-2wLdLvU7H5iQS3KSp3zT95UEQuPHX01G3pmgKSYwHEmr4lAWAEjn649gwPBWdYaJjpMyLrQ6fk0LhkSMwP0fEACVmodZ3Jy3mYthy1GU_3KPISxcE8qy-m1ouYLoonOmP1_SOy4hFhk6UVlajR5mO4vkJQO_vYsBPbbB_FvYb7pkDsm_Obw9zjYadC2So-JVl6TlqABdN3x_-rsUKmdCLenvz9bT6w"/>
+<nav class="hidden md:flex space-x-6">
+<a class="font-mono uppercase tracking-widest text-xs text-white/60 hover:bg-amber-400 hover:text-black px-3 py-2 transition-none" href="#">Diagnostic</a>
+<a class="font-mono uppercase tracking-widest text-xs text-white/60 hover:bg-amber-400 hover:text-black px-3 py-2 transition-none" href="#">Vulnerability Report</a>
+<a class="font-mono uppercase tracking-widest text-xs text-amber-400 border-b border-amber-400 hover:bg-amber-400 hover:text-black px-3 py-2 transition-none" href="#">Sentinel Watch</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-white/60 hover:text-amber-400 cursor-pointer">search</span>
+<button class="font-mono uppercase tracking-widest text-xs bg-amber-400 text-black px-4 py-2 border-0 rounded-none hover:bg-amber-300 transition-none hard-shadow">AUDIT SYSTEM</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-[calc(64px+32px)] px-8 pb-32 max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-stack-lg border-b border-white/10 pb-stack-md flex justify-between items-end">
+<div>
+<h1 class="font-headline-display text-headline-display text-white mb-2">Sentinel Watch™</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Real-time monitoring and compliance verification for Protected Members.</p>
+</div>
+<div class="text-right">
+<div class="font-label-mono text-label-mono text-primary-container mb-1 uppercase">System Status</div>
+<div class="inline-flex items-center space-x-2 bg-surface-container-high px-3 py-1 border border-primary-container">
+<span class="w-2 h-2 rounded-none bg-primary-container animate-pulse"></span>
+<span class="font-numeric-data text-numeric-data text-white">ACTIVE MONITORING</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Global Compliance Score -->
+<div class="md:col-span-4 bg-surface-container border border-outline-variant p-6 relative flex flex-col justify-between min-h-[240px]">
+<div class="absolute top-4 right-4 font-label-mono text-label-mono text-white/40 uppercase">Global Index</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-white mb-1">Compliance Integrity</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Aggregate systemic adherence</p>
+</div>
+<div class="mt-auto flex items-end justify-between border-t border-white/10 pt-4">
+<div class="font-headline-display text-headline-display text-primary-container">98.4<span class="text-headline-lg">%</span></div>
+<div class="bg-green-500 text-black font-label-mono text-label-mono px-2 py-1 uppercase border border-black">Optimal</div>
+</div>
+</div>
+<!-- Active Alerts Panel -->
+<div class="md:col-span-8 bg-surface-container border border-outline p-6 relative">
+<div class="absolute top-4 right-4 font-label-mono text-label-mono text-white/40 uppercase">Priority Queue</div>
+<h2 class="font-headline-md text-headline-md text-white mb-6 border-b border-white/10 pb-2">Compliance Alerts™</h2>
+<div class="space-y-4">
+<!-- Alert Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-primary-container/30 border-l-4 border-l-error">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div>
+<div class="font-label-mono text-label-mono text-error uppercase mb-1">Variance Detected</div>
+<div class="font-body-md text-body-md text-white">Unusual liquidity drain in Member Node #7482</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-mono text-label-mono text-white/60 mb-1">08:14:22 UTC</div>
+<button class="font-label-mono text-label-mono text-primary-container border border-primary-container px-3 py-1 hover:bg-primary-container hover:text-black transition-none uppercase">Investigate</button>
+</div>
+</div>
+<!-- Alert Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">info</span>
+<div>
+<div class="font-label-mono text-label-mono text-primary-container uppercase mb-1">Audit Initiated</div>
+<div class="font-body-md text-body-md text-white">Routine scan of collateral pools commencing</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-mono text-label-mono text-white/60 mb-1">07:55:00 UTC</div>
+<span class="font-label-mono text-label-mono text-white/40 uppercase">In Progress</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Audit Progress Tracking -->
+<div class="md:col-span-12 bg-surface-container border border-outline-variant p-6 mt-2">
+<div class="flex justify-between items-center mb-6 border-b border-white/10 pb-2">
+<h2 class="font-headline-md text-headline-md text-white">Continuous Audit Vectors</h2>
+<span class="font-label-mono text-label-mono text-primary-container uppercase">Live Feed</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Progress Item -->
+<div>
+<div class="flex justify-between font-label-mono text-label-mono uppercase mb-2">
+<span class="text-white">Ledger Reconciliation</span>
+<span class="text-primary-container">74%</span>
+</div>
+<div class="w-full bg-surface-container-low border border-white/10 h-2">
+<div class="bg-primary-container h-full w-[74%]"></div>
+</div>
+<div class="mt-2 font-label-mono text-label-mono text-white/40 text-right">Node A-12</div>
+</div>
+<!-- Progress Item -->
+<div>
+<div class="flex justify-between font-label-mono text-label-mono uppercase mb-2">
+<span class="text-white">Smart Contract Verification</span>
+<span class="text-primary-container">100%</span>
+</div>
+<div class="w-full bg-surface-container-low border border-white/10 h-2">
+<div class="bg-green-500 h-full w-[100%]"></div>
+</div>
+<div class="mt-2 font-label-mono text-label-mono text-green-500 text-right uppercase">Verified</div>
+</div>
+<!-- Progress Item -->
+<div>
+<div class="flex justify-between font-label-mono text-label-mono uppercase mb-2">
+<span class="text-white">Collateral Assessment</span>
+<span class="text-primary-container">22%</span>
+</div>
+<div class="w-full bg-surface-container-low border border-white/10 h-2">
+<div class="bg-primary-container h-full w-[22%]"></div>
+</div>
+<div class="mt-2 font-label-mono text-label-mono text-white/40 text-right">Node C-04</div>
+</div>
+</div>
+</div>
+<!-- Activity Ledger Table -->
+<div class="md:col-span-12 bg-surface border border-outline mt-2 overflow-hidden">
+<div class="p-4 border-b border-outline-variant bg-surface-container flex justify-between items-center">
+<h3 class="font-label-mono text-label-mono text-primary-container uppercase tracking-widest">Recent Account Activity Ledger</h3>
+<button class="font-label-mono text-label-mono text-white/60 hover:text-primary-container uppercase flex items-center">
+                        Export Data <span class="material-symbols-outlined ml-1 text-[16px]">download</span>
+</button>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-high">
+<th class="p-4 font-label-mono text-label-mono text-primary-container uppercase">Timestamp</th>
+<th class="p-4 font-label-mono text-label-mono text-primary-container uppercase">Event ID</th>
+<th class="p-4 font-label-mono text-label-mono text-primary-container uppercase">Target Node</th>
+<th class="p-4 font-label-mono text-label-mono text-primary-container uppercase">Action</th>
+<th class="p-4 font-label-mono text-label-mono text-primary-container uppercase text-right">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-white">
+<tr class="data-table-row border-b border-white/5">
+<td class="p-4 font-numeric-data text-numeric-data text-[14px] text-white/80">2023-10-27 08:12:01</td>
+<td class="p-4 font-mono text-primary-container">EVT-9921-A</td>
+<td class="p-4">Member Node #7482</td>
+<td class="p-4">Liquidity Transfer</td>
+<td class="p-4 text-right"><span class="bg-error/20 text-error border border-error px-2 py-1 font-label-mono text-label-mono uppercase">Flagged</span></td>
+</tr>
+<tr class="data-table-row border-b border-white/5">
+<td class="p-4 font-numeric-data text-numeric-data text-[14px] text-white/80">2023-10-27 07:45:33</td>
+<td class="p-4 font-mono text-white/60">EVT-9920-B</td>
+<td class="p-4">Vault Alpha</td>
+<td class="p-4">Collateral Lock</td>
+<td class="p-4 text-right"><span class="bg-green-500/20 text-green-500 border border-green-500 px-2 py-1 font-label-mono text-label-mono uppercase">Cleared</span></td>
+</tr>
+<tr class="data-table-row border-b border-white/5">
+<td class="p-4 font-numeric-data text-numeric-data text-[14px] text-white/80">2023-10-27 07:15:00</td>
+<td class="p-4 font-mono text-white/60">EVT-9919-C</td>
+<td class="p-4">System Wide</td>
+<td class="p-4">Automated Diagnostic</td>
+<td class="p-4 text-right"><span class="bg-green-500/20 text-green-500 border border-green-500 px-2 py-1 font-label-mono text-label-mono uppercase">Cleared</span></td>
+</tr>
+<tr class="data-table-row">
+<td class="p-4 font-numeric-data text-numeric-data text-[14px] text-white/80">2023-10-27 06:30:22</td>
+<td class="p-4 font-mono text-white/60">EVT-9918-A</td>
+<td class="p-4">Member Node #1105</td>
+<td class="p-4">Credential Update</td>
+<td class="p-4 text-right"><span class="bg-green-500/20 text-green-500 border border-green-500 px-2 py-1 font-label-mono text-label-mono uppercase">Cleared</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-amber-400/20 flex flex-col md:flex-row justify-between items-center px-8 py-4 bg-black mt-auto z-50">
+<div class="font-mono text-[10px] uppercase tracking-tight text-white/40">
+            © 2024 DEBT SENTINEL | AUDIT THE PERFORMANCE.
+        </div>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a class="font-mono text-[10px] uppercase tracking-tight text-white/40 hover:text-amber-400 underline transition-none" href="#">Regulatory Disclosures</a>
+<a class="font-mono text-[10px] uppercase tracking-tight text-white/40 hover:text-amber-400 underline transition-none" href="#">Data Integrity Protocol</a>
+<a class="font-mono text-[10px] uppercase tracking-tight text-white/40 hover:text-amber-400 underline transition-none" href="#">Security Log</a>
+</div>
+</footer>
+</body></html>

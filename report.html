@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vulnerability Report™ - Debt Sentinel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;family=Space+Grotesk:wght@500;600&amp;family=Work+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#ffbb18",
+                        "on-tertiary-container": "#515253",
+                        "surface-variant": "#353535",
+                        "on-background": "#e5e2e1",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "background": "#131313",
+                        "primary": "#ffdea5",
+                        "on-tertiary": "#2f3131",
+                        "on-surface-variant": "#d5c4ac",
+                        "surface-dim": "#131313",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-secondary": "#303030",
+                        "primary-container": "#ffba11",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#412d00",
+                        "surface-container-highest": "#353535",
+                        "surface": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-container": "#474747",
+                        "on-primary-fixed": "#271900",
+                        "outline": "#9d8f78",
+                        "surface-container": "#20201f",
+                        "primary-fixed": "#ffdea7",
+                        "on-secondary-container": "#b5b5b5",
+                        "outline-variant": "#504533",
+                        "tertiary-container": "#c5c6c6",
+                        "surface-tint": "#ffbb18",
+                        "surface-bright": "#393939",
+                        "inverse-primary": "#7c5800",
+                        "on-primary-container": "#6c4d00",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary": "#c6c6c6",
+                        "error": "#ffb4ab",
+                        "tertiary": "#e2e2e2",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "margin": "32px",
+                        "stack-sm": "8px",
+                        "stack-lg": "48px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-mono": ["Space Grotesk"],
+                        "headline-display": ["Inter"],
+                        "numeric-data": ["Space Grotesk"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-mono": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "numeric-data": ["20px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Brutalist Grid Background */
+        body {
+            background-color: #131313;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 64px 64px;
+            background-position: center top;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar (Generated from JSON) -->
+<nav class="fixed top-0 w-full border-b border-white/10 flex justify-between items-center px-8 h-16 z-50 bg-black transition-none">
+<div class="flex items-center gap-8">
+<img alt="DEBT SENTINEL Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhIzeM1kUBtmp05RIPks4RjDnOoEphfuRAdfKp5_PwwXKq-2wLdLvU7H5iQS3KSp3zT95UEQuPHX01G3pmgKSYwHEmr4lAWAEjn649gwPBWdYaJjpMyLrQ6fk0LhkSMwP0fEACVmodZ3Jy3mYthy1GU_3KPISxcE8qy-m1ouYLoonOmP1_SOy4hFhk6UVlajR5mO4vkJQO_vYsBPbbB_FvYb7pkDsm_Obw9zjYadC2So-JVl6TlqABdN3x_-rsUKmdCLenvz9bT6w"/>
+<div class="hidden md:flex gap-6 font-mono uppercase tracking-widest text-xs">
+<a class="text-white/60 hover:bg-amber-400 hover:text-black py-4 transition-none flex flex-col justify-center" href="#">Diagnostic</a>
+<a class="text-amber-400 border-b border-amber-400 hover:bg-amber-400 hover:text-black py-4 transition-none flex flex-col justify-center" href="#">Vulnerability Report</a>
+<a class="text-white/60 hover:bg-amber-400 hover:text-black py-4 transition-none flex flex-col justify-center" href="#">Sentinel Watch</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-amber-400 cursor-pointer">search</span>
+<button class="hidden md:block bg-amber-400 text-black font-mono uppercase tracking-widest text-xs px-4 py-2 hover:bg-white transition-none rounded-none font-bold">AUDIT SYSTEM</button>
+<span class="material-symbols-outlined md:hidden text-amber-400 cursor-pointer">menu</span>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-16 px-8 max-w-container-max mx-auto w-full flex flex-col gap-gutter">
+<!-- Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between border-b border-surface-variant pb-6 mb-4 rounded-none">
+<div>
+<div class="font-label-mono text-label-mono text-primary-container uppercase mb-2">System Generated</div>
+<h1 class="font-headline-display text-headline-display text-on-surface uppercase tracking-tight">Vulnerability Report™</h1>
+</div>
+<div class="text-right mt-4 md:mt-0 font-label-mono text-label-mono text-on-surface-variant uppercase flex flex-col gap-1 border border-surface-variant p-2 bg-surface-container-low rounded-none">
+<span>Subject: ACCT-8942-B</span>
+<span>Audited: 2024-10-24 14:02:11 UTC</span>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Sentinel Score Card (Cols 1-4) -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-low border border-outline-variant p-6 flex flex-col justify-between rounded-none relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 font-label-mono text-label-mono text-error uppercase">Critical</div>
+<div>
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-4">Sentinel Score™</h2>
+<div class="font-headline-display text-[72px] font-black leading-none text-error tracking-tighter mb-2">34</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 border-t border-surface-variant pt-2">Score below threshold (75). High probability of structural debt variance.</p>
+</div>
+</div>
+<!-- Benchmark Card (Cols 5-12) -->
+<div class="col-span-12 md:col-span-8 bg-surface-container border border-outline-variant p-6 rounded-none flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Benchmark: Capital Efficiency</h2>
+<span class="material-symbols-outlined text-primary-container">monitoring</span>
+</div>
+<div class="flex-grow flex flex-col justify-center gap-6">
+<!-- Amount Paid -->
+<div>
+<div class="flex justify-between font-label-mono text-label-mono text-on-surface uppercase mb-2">
+<span>Amount Claimed (Unverified)</span>
+<span class="font-numeric-data text-numeric-data text-on-surface">$14,500.00</span>
+</div>
+<div class="w-full bg-surface-variant h-4 rounded-none border border-outline-variant overflow-hidden">
+<div class="bg-surface-bright h-full w-full"></div>
+</div>
+</div>
+<!-- Amount Settled -->
+<div>
+<div class="flex justify-between font-label-mono text-label-mono text-primary-container uppercase mb-2">
+<span>Sentinel Projected Settlement</span>
+<span class="font-numeric-data text-numeric-data text-primary-container">$6,200.00</span>
+</div>
+<div class="w-full bg-surface-variant h-4 rounded-none border border-outline-variant overflow-hidden relative">
+<div class="bg-primary-container h-full w-[42%] border-r border-black relative">
+<!-- Hatch pattern for projected area -->
+<div class="absolute inset-0 opacity-20" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 2px, transparent 2px, transparent 6px);"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-surface-variant flex justify-between items-center bg-black p-3 rounded-none">
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">Identified Variance</span>
+<span class="font-numeric-data text-headline-md text-primary-container font-bold">$8,300.00</span>
+</div>
+</div>
+<!-- Red Flags Data Table (Cols 1-8) -->
+<div class="col-span-12 md:col-span-8 border border-outline-variant bg-surface-container-low rounded-none overflow-hidden">
+<div class="p-4 border-b border-outline-variant bg-surface flex justify-between items-center">
+<h2 class="font-label-mono text-label-mono text-primary-container uppercase">Detected Red Flags</h2>
+<div class="bg-error text-on-error font-label-mono text-[10px] uppercase px-2 py-1 font-bold">3 Violations</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="font-label-mono text-label-mono text-on-surface-variant uppercase border-b border-surface-variant bg-surface">
+<th class="p-4 font-normal">Status</th>
+<th class="p-4 font-normal">Regulation Code</th>
+<th class="p-4 font-normal">Variance Description</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="border-b border-surface-variant bg-surface-container-low">
+<td class="p-4">
+<div class="inline-block bg-error text-black font-label-mono text-[10px] uppercase px-2 py-1 font-bold rounded-none">Variance Detected</div>
+</td>
+<td class="p-4 font-numeric-data text-primary-container">FDCPA §807(2)</td>
+<td class="p-4">False representation of character/amount of debt.</td>
+</tr>
+<tr class="border-b border-surface-variant bg-surface">
+<td class="p-4">
+<div class="inline-block bg-error text-black font-label-mono text-[10px] uppercase px-2 py-1 font-bold rounded-none">Variance Detected</div>
+</td>
+<td class="p-4 font-numeric-data text-primary-container">FCRA §623(a)(1)</td>
+<td class="p-4">Reporting information known to be inaccurate.</td>
+</tr>
+<tr class="bg-surface-container-low">
+<td class="p-4">
+<div class="inline-block bg-primary-container text-black font-label-mono text-[10px] uppercase px-2 py-1 font-bold rounded-none">Review Required</div>
+</td>
+<td class="p-4 font-numeric-data text-primary-container">UDAAP §1036</td>
+<td class="p-4">Deceptive act in collection practice identified in log.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Sentinel Directive™ (Cols 9-12) -->
+<div class="col-span-12 md:col-span-4 bg-black border border-primary-container shadow-[2px_2px_0px_0px_#ffba11] p-6 rounded-none flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h2 class="font-headline-md text-headline-md text-primary-container uppercase tracking-tight">Sentinel Directive™</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface mb-6">Immediate action required. Structural anomalies detected in creditor ledger. Do not initiate payment sequence.</p>
+</div>
+<button class="w-full bg-primary-container text-black font-label-mono text-label-mono uppercase py-4 font-bold hover:bg-white transition-none rounded-none border border-transparent hover:border-primary-container">
+                    Initiate Dispute Protocol
+                </button>
+</div>
+<!-- Independence Statement (Col 12) -->
+<div class="col-span-12 mt-8 text-center border-t border-surface-variant pt-6">
+<p class="font-label-mono text-[10px] uppercase tracking-widest text-on-surface-variant">Independence Statement</p>
+<p class="font-body-md text-[12px] text-surface-variant mt-2 max-w-3xl mx-auto">This Sentinel Score™ and accompanying data are generated via algorithmic audit of provided documentation and public regulatory databases. Debt Sentinel operates as an independent diagnostic entity and does not provide legal counsel. Data is unyielding; interpretation requires execution.</p>
+</div>
+</div>
+</main>
+<!-- Footer (Generated from JSON) -->
+<footer class="w-full border-t border-amber-400/20 bg-black flex flex-col md:flex-row justify-between items-center px-8 py-4 mt-auto transition-none">
+<div class="font-mono text-[10px] uppercase tracking-tight text-white/40 mb-4 md:mb-0">
+            © 2024 DEBT SENTINEL | AUDIT THE PERFORMANCE.
+        </div>
+<div class="flex gap-6 font-mono text-[10px] uppercase tracking-tight">
+<a class="text-white/40 hover:text-amber-400 underline transition-none" href="#">Regulatory Disclosures</a>
+<a class="text-white/40 hover:text-amber-400 underline transition-none" href="#">Data Integrity Protocol</a>
+<a class="text-white/40 hover:text-amber-400 underline transition-none" href="#">Security Log</a>
+</div>
+</footer>
+</body></html>

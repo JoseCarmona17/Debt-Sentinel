@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentinel Lexicography</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;family=Space+Grotesk:wght@500;600&amp;family=Work+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#ffbb18",
+                        "on-tertiary-container": "#515253",
+                        "surface-variant": "#353535",
+                        "on-background": "#e5e2e1",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "background": "#131313",
+                        "primary": "#ffdea5",
+                        "on-tertiary": "#2f3131",
+                        "on-surface-variant": "#d5c4ac",
+                        "surface-dim": "#131313",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-secondary": "#303030",
+                        "primary-container": "#ffba11",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#412d00",
+                        "surface-container-highest": "#353535",
+                        "surface": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-container": "#474747",
+                        "on-primary-fixed": "#271900",
+                        "outline": "#9d8f78",
+                        "surface-container": "#20201f",
+                        "primary-fixed": "#ffdea7",
+                        "on-secondary-container": "#b5b5b5",
+                        "outline-variant": "#504533",
+                        "tertiary-container": "#c5c6c6",
+                        "surface-tint": "#ffbb18",
+                        "surface-bright": "#393939",
+                        "inverse-primary": "#7c5800",
+                        "on-primary-container": "#6c4d00",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary": "#c6c6c6",
+                        "error": "#ffb4ab",
+                        "tertiary": "#e2e2e2",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "margin": "32px",
+                        "stack-sm": "8px",
+                        "stack-lg": "48px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-mono": ["Space Grotesk"],
+                        "headline-display": ["Inter"],
+                        "numeric-data": ["Space Grotesk"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-mono": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "numeric-data": ["20px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 186, 17, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-black text-on-background min-h-screen flex flex-col grid-bg selection:bg-primary-container selection:text-black">
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full border-b border-white/10 flex justify-between items-center px-8 h-16 z-50 bg-black flat no-shadow transition-none">
+<div class="font-black text-xl tracking-tighter text-amber-400"><img alt="DEBT SENTINEL" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhIzeM1kUBtmp05RIPks4RjDnOoEphfuRAdfKp5_PwwXKq-2wLdLvU7H5iQS3KSp3zT95UEQuPHX01G3pmgKSYwHEmr4lAWAEjn649gwPBWdYaJjpMyLrQ6fk0LhkSMwP0fEACVmodZ3Jy3mYthy1GU_3KPISxcE8qy-m1ouYLoonOmP1_SOy4hFhk6UVlajR5mO4vkJQO_vYsBPbbB_FvYb7pkDsm_Obw9zjYadC2So-JVl6TlqABdN3x_-rsUKmdCLenvz9bT6w"/></div>
+<div class="hidden md:flex items-center gap-8 font-mono uppercase tracking-widest text-xs">
+<a class="text-white/60 hover:bg-amber-400 hover:text-black transition-none px-3 py-4 h-full flex items-center border-b border-transparent" href="#">Diagnostic</a>
+<a class="text-white/60 hover:bg-amber-400 hover:text-black transition-none px-3 py-4 h-full flex items-center border-b border-transparent" href="#">Vulnerability Report</a>
+<a class="text-white/60 hover:bg-amber-400 hover:text-black transition-none px-3 py-4 h-full flex items-center border-b border-transparent" href="#">Sentinel Watch</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-amber-400 hover:bg-amber-400 hover:text-black transition-none p-2 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">search</span>
+</button>
+<button class="border border-amber-400 text-amber-400 font-mono uppercase tracking-widest text-xs px-4 py-2 hover:bg-amber-400 hover:text-black transition-none">
+                AUDIT SYSTEM
+            </button>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-grow pt-[104px] pb-stack-lg px-margin max-w-container-max mx-auto w-full relative">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Sidebar Navigation -->
+<aside class="col-span-1 md:col-span-3 hidden md:block">
+<div class="sticky top-[104px] border border-surface-variant bg-[#1A1A1A] p-6">
+<h3 class="font-label-mono text-label-mono text-primary-container uppercase mb-stack-md pb-2 border-b border-surface-variant">Document Index</h3>
+<ul class="flex flex-col gap-4 font-body-md text-body-md text-on-surface">
+<li>
+<a class="hover:text-primary-container hover:underline transition-none flex items-center gap-2" href="#lexicography">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                                Official Lexicography
+                            </a>
+</li>
+<li class="pl-6 text-on-surface-variant"><a class="hover:text-primary-container transition-none" href="#term-audit">Sentinel Audit™</a></li>
+<li class="pl-6 text-on-surface-variant"><a class="hover:text-primary-container transition-none" href="#term-alert">Compliance Alert™</a></li>
+<li class="pl-6 text-on-surface-variant"><a class="hover:text-primary-container transition-none" href="#term-protect">Sentinel Protection</a></li>
+<li class="pt-2">
+<a class="hover:text-primary-container hover:underline transition-none flex items-center gap-2" href="#methodology">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                                The Sentinel Directive
+                            </a>
+</li>
+</ul>
+</div>
+</aside>
+<!-- Document Content -->
+<article class="col-span-1 md:col-span-9 flex flex-col gap-stack-lg">
+<!-- Document Header -->
+<header class="border-b-2 border-primary-container pb-stack-md">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">book</span>
+<span class="font-label-mono text-label-mono text-primary-container uppercase tracking-widest">Protocol Documentation // Ref: D-774</span>
+</div>
+<h1 class="font-headline-display text-headline-display text-on-background uppercase tracking-tight text-glow">Sentinel Lexicography</h1>
+<p class="mt-4 font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+                        Standardized terminology and operational methodologies governing the execution of debt analysis, variance detection, and institutional risk mitigation protocols.
+                    </p>
+</header>
+<!-- Section: Lexicography -->
+<section class="flex flex-col gap-stack-md" id="lexicography">
+<h2 class="font-headline-lg text-headline-lg text-on-background border-l-4 border-primary-container pl-4 uppercase">Official Lexicon</h2>
+<div class="grid grid-cols-1 gap-4">
+<!-- Term 1 -->
+<div class="border border-surface-variant bg-[#1A1A1A] p-6 relative group" id="term-audit">
+<div class="absolute top-0 right-0 p-4 font-label-mono text-label-mono text-on-surface-variant uppercase">ID: LX-01</div>
+<h3 class="font-headline-md text-headline-md text-primary-container mb-4">Sentinel Audit™</h3>
+<p class="font-body-md text-body-md text-on-surface mb-4">
+                                A highly intrusive, non-destructive analytical process designed to extract, verify, and cross-reference underlying debt obligations against contractual covenants. It bypasses intermediary summaries to evaluate raw performance data.
+                            </p>
+<div class="flex gap-2 flex-wrap">
+<span class="bg-surface-variant text-on-background font-label-mono text-[10px] px-2 py-1 uppercase border border-[#333333]">Data Extraction</span>
+<span class="bg-surface-variant text-on-background font-label-mono text-[10px] px-2 py-1 uppercase border border-[#333333]">Verification</span>
+</div>
+</div>
+<!-- Term 2 -->
+<div class="border border-surface-variant bg-[#1A1A1A] p-6 relative" id="term-alert">
+<div class="absolute top-0 right-0 p-4 font-label-mono text-label-mono text-on-surface-variant uppercase">ID: LX-02</div>
+<h3 class="font-headline-md text-headline-md text-error-container mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+                                Compliance Alert™
+                            </h3>
+<p class="font-body-md text-body-md text-on-surface mb-4">
+                                An automated, high-priority notification triggered when localized data streams deviate from expected covenant thresholds by a margin exceeding established statistical tolerances (var &gt; 0.005).
+                            </p>
+<div class="bg-black border border-[#333333] p-4 font-label-mono text-label-mono text-on-surface-variant mt-2">
+                                STATUS CHIP REPRESENTATION: <span class="bg-error-container text-on-error-container px-2 py-1 ml-2">VARIANCE DETECTED</span>
+</div>
+</div>
+<!-- Term 3 -->
+<div class="border border-white bg-[#1A1A1A] p-6 relative" id="term-protect">
+<div class="absolute top-0 right-0 p-4 font-label-mono text-label-mono text-on-surface-variant uppercase">ID: LX-03</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-4">Sentinel Protection</h3>
+<p class="font-body-md text-body-md text-on-surface">
+                                The overarching state of structural security achieved post-audit. Indicates that a specific asset portfolio has been rigorously verified and is actively monitored for subsequent deviations, rendering it "Audited &amp; Secured."
+                            </p>
+</div>
+</div>
+</section>
+<!-- Section: Methodology -->
+<section class="flex flex-col gap-stack-md mt-stack-md" id="methodology">
+<h2 class="font-headline-lg text-headline-lg text-on-background border-l-4 border-primary-container pl-4 uppercase">The Sentinel Directive</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                        The immutable sequence of operations utilized by our analytical engine to dissect and secure financial portfolios.
+                    </p>
+<div class="flex flex-col border border-surface-variant bg-[#1A1A1A]">
+<!-- Step 1 -->
+<div class="grid grid-cols-12 border-b border-surface-variant">
+<div class="col-span-2 md:col-span-1 bg-black flex items-center justify-center border-r border-surface-variant p-4">
+<span class="font-numeric-data text-numeric-data text-primary-container">01</span>
+</div>
+<div class="col-span-10 md:col-span-11 p-6">
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Data Ingestion &amp; Normalization</h4>
+<p class="font-body-md text-body-md text-on-surface">Raw ledgers and contractual documents are assimilated, stripped of narrative formatting, and converted into standardized numerical arrays.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="grid grid-cols-12 border-b border-surface-variant">
+<div class="col-span-2 md:col-span-1 bg-black flex items-center justify-center border-r border-surface-variant p-4">
+<span class="font-numeric-data text-numeric-data text-primary-container">02</span>
+</div>
+<div class="col-span-10 md:col-span-11 p-6">
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Algorithmic Variance Scanning</h4>
+<p class="font-body-md text-body-md text-on-surface">Normalized data is processed through the Sentinel Engine to detect mathematical inconsistencies between reported performance and underlying contractual reality.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="grid grid-cols-12">
+<div class="col-span-2 md:col-span-1 bg-black flex items-center justify-center border-r border-surface-variant p-4">
+<span class="font-numeric-data text-numeric-data text-primary-container">03</span>
+</div>
+<div class="col-span-10 md:col-span-11 p-6">
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Vulnerability Flagging</h4>
+<p class="font-body-md text-body-md text-on-surface">Detected anomalies are isolated, categorized by risk severity, and output into the actionable Vulnerability Report architecture.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Slogan Banner -->
+<div class="mt-stack-lg pt-stack-md border-t border-primary-container text-center">
+<h3 class="font-headline-md text-headline-md text-on-surface-variant uppercase tracking-widest text-glow">
+                        Don't trust the promise. Audit the performance.
+                    </h3>
+</div>
+</article>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="w-full border-t border-amber-400/20 bg-black flex flex-col md:flex-row justify-between items-center px-8 py-4 transition-none flat mt-auto">
+<div class="font-mono text-[10px] uppercase tracking-tight text-amber-400 mb-4 md:mb-0">
+            © 2024 DEBT SENTINEL | AUDIT THE PERFORMANCE.
+        </div>
+<div class="flex items-center gap-6 font-mono text-[10px] uppercase tracking-tight">
+<a class="text-white/40 hover:text-amber-400 underline transition-none" href="#">Regulatory Disclosures</a>
+<a class="text-white/40 hover:text-amber-400 underline transition-none" href="#">Data Integrity Protocol</a>
+<a class="text-white/40 hover:text-amber-400 underline transition-none" href="#">Security Log</a>
+</div>
+</footer>
+</body></html>
