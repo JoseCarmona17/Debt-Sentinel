@@ -18,7 +18,7 @@ export default function Home() {
               System Activation
             </div>
             <h1 className="font-headline-display text-4xl sm:text-headline-display text-white leading-tight">
-              Don't trust the promise.<br/>
+              Don't trust the promise.<br />
               <span className="text-primary-container">Audit the performance.</span>
             </h1>
             <p className="font-body-lg text-sm sm:text-body-lg text-on-surface-variant max-w-2xl border-l-2 border-primary-container pl-4">
@@ -38,17 +38,17 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1 border-t border-b border-white/10 py-8 mt-12">
             <div className="p-4 sm:p-6 border-b md:border-b-0 md:border-r border-white/10 flex flex-col gap-2">
-              <span className="font-label-mono text-label-mono text-surface-variant uppercase">Data Integrity</span>
+              <span className="font-label-mono text-label-mono uppercase color-white">Data Integrity</span>
               <span className="font-numeric-data text-3xl sm:text-numeric-data text-white">99.98%</span>
               <span className="font-label-mono text-label-mono text-primary-container">VERIFIED</span>
             </div>
             <div className="p-4 sm:p-6 border-b md:border-b-0 md:border-r border-white/10 flex flex-col gap-2">
-              <span className="font-label-mono text-label-mono text-surface-variant uppercase">Audits Completed</span>
+              <span className="font-label-mono text-label-mono uppercase color-white">Audits Completed</span>
               <span className="font-numeric-data text-3xl sm:text-numeric-data text-white">12,450+</span>
               <span className="font-label-mono text-label-mono text-primary-container">Q3 2026</span>
             </div>
             <div className="p-4 sm:p-6 flex flex-col gap-2">
-              <span className="font-label-mono text-label-mono text-surface-variant uppercase">Average Variance Detected</span>
+              <span className="font-label-mono text-label-mono uppercase color-white">Average Variance Detected</span>
               <span className="font-numeric-data text-3xl sm:text-numeric-data text-white">14.2%</span>
               <span className="font-label-mono text-label-mono text-error">CRITICAL FLAG</span>
             </div>
