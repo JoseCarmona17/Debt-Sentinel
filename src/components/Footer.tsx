@@ -10,10 +10,10 @@ export default function Footer() {
         </Link>
       </div>
       <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto items-center">
-        <a className="text-gray-500 hover:text-amber-500 transition-colors" href="#">Independence Statement</a>
-        <a className="text-gray-500 hover:text-amber-500 transition-colors" href="#">Regulatory Disclosure</a>
-        <a className="text-amber-500 underline transition-colors" href="#">Privacy Ledger</a>
-        <a className="text-gray-500 hover:text-amber-500 transition-colors" href="#">Terms of Audit</a>
+        <Link className="text-gray-500 hover:text-amber-500 transition-colors" href="/independence-statement">Independence Statement</Link>
+        <Link className="text-gray-500 hover:text-amber-500 transition-colors" href="/regulatory-disclosure">Regulatory Disclosure</Link>
+        <Link className="text-amber-500 underline transition-colors" href="/privacy-ledger">Privacy Ledger</Link>
+        <Link className="text-gray-500 hover:text-amber-500 transition-colors" href="/terms-of-audit">Terms of Audit</Link>
       </div>
       <div className="text-gray-500 md:text-right max-w-xs w-full md:w-auto mt-4 md:mt-0">
         DON'T TRUST THE PROMISE. AUDIT THE PERFORMANCE. © 2026 DEBT SENTINEL
