@@ -115,11 +115,8 @@ export default function Page() {
           </div>
           {/* comment */}
           <div className="md:col-span-12 bg-surface border border-outline mt-2 overflow-hidden">
-            <div className="p-4 border-b border-outline-variant bg-surface-container flex justify-between items-center">
+            <div className="p-4 border-b border-outline-variant bg-surface-container">
               <h3 className="font-label-mono text-label-mono text-primary-container uppercase tracking-widest">Recent Account Activity Ledger</h3>
-              <button className="font-label-mono text-label-mono text-white/60 hover:text-primary-container uppercase flex items-center">
-                Export Data <span className="material-symbols-outlined ml-1 text-[16px]">download</span>
-              </button>
             </div>
             <div className="w-full overflow-x-auto">
               <table className="w-full text-left border-collapse">
