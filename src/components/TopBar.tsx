@@ -9,7 +9,7 @@ export default function TopBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '/diagnostic', label: 'Diagnostic' },
+    // { href: '/diagnostic', label: 'Diagnostic' },
     { href: '/report', label: 'Vulnerability Report' },
     { href: '/dashboard', label: 'Sentinel Watch' },
     { href: '/plans', label: 'Protection Plans' },

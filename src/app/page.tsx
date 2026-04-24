@@ -26,10 +26,10 @@ export default function Home() {
               The Independent Oversight Authority for Debt Settlement. We bridge the gap between what was promised and what is actually delivered. Data over narrative.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <Link href="/diagnostic" className="bg-primary-container text-on-primary-fixed font-label-mono text-label-mono px-6 sm:px-8 py-4 border border-primary-container hover:bg-white transition-colors hard-shadow flex items-center justify-center gap-2 w-full sm:w-auto">
+              {/* <Link href="/diagnostic" className="bg-primary-container text-on-primary-fixed font-label-mono text-label-mono px-6 sm:px-8 py-4 border border-primary-container hover:bg-white transition-colors hard-shadow flex items-center justify-center gap-2 w-full sm:w-auto">
                 GET THE DIAGNOSTIC
                 <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </Link>
+              </Link> */}
               <Link href="/lexicography" className="bg-transparent text-white font-label-mono text-label-mono px-6 sm:px-8 py-4 border border-white hover:border-primary-container hover:text-primary-container transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
                 VIEW LEXICOGRAPHY
                 <span className="material-symbols-outlined text-[16px]">menu_book</span>
