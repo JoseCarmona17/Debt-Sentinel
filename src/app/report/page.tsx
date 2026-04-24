@@ -16,7 +16,7 @@ export default function Page() {
           </div>
           <div className="text-right mt-4 md:mt-0 font-label-mono text-label-mono text-on-surface-variant uppercase flex flex-col gap-1 border border-surface-variant p-2 bg-surface-container-low rounded-none">
             <span>Subject: ACCT-8942-B</span>
-            <span>Audited: 2024-10-24 14:02:11 UTC</span>
+            <span>Audited: 2026-10-26 14:02:11 UTC</span>
           </div>
         </header>
         {/* comment */}
@@ -67,7 +67,7 @@ export default function Page() {
             </div>
           </div>
           {/* comment */}
-          <div className="col-span-12 md:col-span-8 border border-outline-variant bg-surface-container-low rounded-none overflow-hidden">
+          <div className="col-span-12 md:col-span-12 border border-outline-variant bg-surface-container-low rounded-none overflow-hidden">
             <div className="p-4 border-b border-outline-variant bg-surface flex justify-between items-center">
               <h2 className="font-label-mono text-label-mono text-primary-container uppercase">Detected Red Flags</h2>
               <div className="bg-error text-on-error font-label-mono text-[10px] uppercase px-2 py-1 font-bold">3 Violations</div>
@@ -76,54 +76,42 @@ export default function Page() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="font-label-mono text-label-mono text-on-surface-variant uppercase border-b border-surface-variant bg-surface">
-                    <th className="p-4 font-normal">Status</th>
-                    <th className="p-4 font-normal">Regulation Code</th>
-                    <th className="p-4 font-normal">Variance Description</th>
+                    <th className="p-6 font-normal">Status</th>
+                    <th className="p-6 font-normal">Regulation Code</th>
+                    <th className="p-6 font-normal">Variance Description</th>
                   </tr>
                 </thead>
                 <tbody className="font-body-md text-body-md text-on-surface">
                   <tr className="border-b border-surface-variant bg-surface-container-low">
-                    <td className="p-4">
+                    <td className="p-6">
                       <div className="inline-block bg-error text-black font-label-mono text-[10px] uppercase px-2 py-1 font-bold rounded-none">Variance Detected</div>
                     </td>
-                    <td className="p-4 font-numeric-data text-primary-container">FDCPA §807(2)</td>
-                    <td className="p-4">False representation of character/amount of debt.</td>
+                    <td className="p-6 font-numeric-data text-primary-container">FDCPA §807(2)</td>
+                    <td className="p-6">False representation of character/amount of debt.</td>
                   </tr>
                   <tr className="border-b border-surface-variant bg-surface">
-                    <td className="p-4">
+                    <td className="p-6">
                       <div className="inline-block bg-error text-black font-label-mono text-[10px] uppercase px-2 py-1 font-bold rounded-none">Variance Detected</div>
                     </td>
-                    <td className="p-4 font-numeric-data text-primary-container">FCRA §623(a)(1)</td>
-                    <td className="p-4">Reporting information known to be inaccurate.</td>
+                    <td className="p-6 font-numeric-data text-primary-container">FCRA §623(a)(1)</td>
+                    <td className="p-6">Reporting information known to be inaccurate.</td>
                   </tr>
                   <tr className="bg-surface-container-low">
-                    <td className="p-4">
+                    <td className="p-6">
                       <div className="inline-block bg-primary-container text-black font-label-mono text-[10px] uppercase px-2 py-1 font-bold rounded-none">Review Required</div>
                     </td>
-                    <td className="p-4 font-numeric-data text-primary-container">UDAAP §1036</td>
-                    <td className="p-4">Deceptive act in collection practice identified in log.</td>
+                    <td className="p-6 font-numeric-data text-primary-container">UDAAP §1036</td>
+                    <td className="p-6">Deceptive act in collection practice identified in log.</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
           {/* comment */}
-          <div className="col-span-12 md:col-span-4 bg-black border border-primary-container shadow-[2px_2px_0px_0px_#ffba11] p-6 rounded-none flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="material-symbols-outlined text-primary-container" style={{ fontVariationSettings: '"FILL" 1' }}>warning</span>
-                <h2 className="font-headline-md text-headline-md text-primary-container uppercase tracking-tight">Sentinel Directive™</h2>
-              </div>
-              <p className="font-body-lg text-body-lg text-on-surface mb-6">Immediate action required. Structural anomalies detected in creditor ledger. Do not initiate payment sequence.</p>
-            </div>
-            <button className="w-full bg-primary-container text-black font-label-mono text-label-mono uppercase py-4 font-bold hover:bg-white transition-none rounded-none border border-transparent hover:border-primary-container">
-              Initiate Dispute Protocol
-            </button>
-          </div>
           {/* comment */}
           <div className="col-span-12 mt-8 text-center border-t border-surface-variant pt-6">
             <p className="font-label-mono text-[10px] uppercase tracking-widest text-on-surface-variant">Independence Statement</p>
-            <p className="font-body-md text-[12px] text-surface-variant mt-2 max-w-3xl mx-auto">This Sentinel Score™ and accompanying data are generated via algorithmic audit of provided documentation and public regulatory databases. Debt Sentinel operates as an independent diagnostic entity and does not provide legal counsel. Data is unyielding; interpretation requires execution.</p>
+            <p className="font-body-md text-[12px] text-white mt-2 max-w-3xl mx-auto">This Sentinel Score™ and accompanying data are generated via algorithmic audit of provided documentation and public regulatory databases. Debt Sentinel operates as an independent diagnostic entity and does not provide legal counsel. Data is unyielding; interpretation requires execution.</p>
           </div>
         </div>
       </main>
