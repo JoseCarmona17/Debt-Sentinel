@@ -246,20 +246,14 @@ export default function Page() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-label-mono text-label-mono text-white/60 uppercase">Jurisdiction (State)</label>
-                  <select 
+                  <input 
+                    type="text" 
                     name="state"
                     value={formData.state}
                     onChange={handleInputChange}
-                    className="bg-black border border-white/10 p-4 text-white focus:outline-none focus:border-primary-container transition-colors rounded-none appearance-none"
-                    style={{ colorScheme: 'dark' }}
-                  >
-                    <option value="">SELECT JURISDICTION</option>
-                    <option value="CA">California</option>
-                    <option value="NY">New York</option>
-                    <option value="TX">Texas</option>
-                    <option value="FL">Florida</option>
-                    {/* Add more states as needed */}
-                  </select>
+                    placeholder="ENTER STATE/JURISDICTION"
+                    className="bg-black border border-white/10 p-4 text-white focus:outline-none focus:border-primary-container transition-colors rounded-none placeholder:text-white/10"
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-label-mono text-label-mono text-white/60 uppercase">Creditor Entity (Debt Company)</label>
