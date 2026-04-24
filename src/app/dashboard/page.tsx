@@ -52,7 +52,7 @@ export default function Page() {
                 </div>
                 <div className="text-left sm:text-right w-full sm:w-auto">
                   <div className="font-label-mono text-label-mono text-white/60 mb-2 sm:mb-1">08:14:22 UTC</div>
-                  <button className="font-label-mono text-label-mono text-primary-container border border-primary-container px-3 py-2 sm:py-1 hover:bg-primary-container hover:text-black transition-none uppercase w-full sm:w-auto">Investigate</button>
+                  <button className="font-label-mono text-label-mono text-primary-container border border-primary-container px-3 py-2 sm:py-1 hover: transition-none uppercase w-full sm:w-auto">Investigate</button>
                 </div>
               </div>
               {/* comment */}
