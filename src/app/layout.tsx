@@ -20,6 +20,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Debt Sentinel Oversight Platform",
   description: "Financial Auditor - unyielding, precise, and immune to superficial promises.",
+  icons: {
+    icon: '/Captura.PNG',
+    shortcut: '/Captura.PNG',
+    apple: '/Captura.PNG',
+  },
 };
 
 import TopBar from "@/components/TopBar";

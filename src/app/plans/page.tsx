@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { submitProtectionPlan } from './actions';
+import { supabase } from '@/lib/supabase';
 
 export default function Page() {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
@@ -27,7 +27,7 @@ export default function Page() {
     dataUsageConsent: false,
   });
 
-  const [file, setFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
@@ -42,8 +42,8 @@ export default function Page() {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+    if (e.target.files) {
+      setFiles(Array.from(e.target.files));
     }
   };
 
@@ -52,42 +52,151 @@ export default function Page() {
     setIsSubmitting(true);
     setStatusMessage(null);
 
-    try {
-      const data = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        data.append(key, value.toString());
+    // Validation
+    const isFormValid = formData.fullName && formData.idNumber && formData.state && 
+                        formData.debtCompany && formData.estimatedDebt && 
+                        formData.contactConsent && formData.privacyConsent && 
+                        formData.termsConsent && formData.dataUsageConsent;
+
+    if (!isFormValid || files.length === 0) {
+      setStatusMessage({ 
+        type: 'error', 
+        text: files.length === 0 
+          ? 'Please upload at least one supporting document.' 
+          : 'Please complete all mandatory fields and accept all consents.' 
       });
-      if (file) {
-        data.append('file', file);
-      }
-      if (selectedPlan) {
-        data.append('plan', selectedPlan);
-      }
+      setIsSubmitting(false);
+      return;
+    }
 
-      const result = await submitProtectionPlan(data);
+    try {
+      // 1. Get or Create Empresa
+      let empresaId: number | null = null;
+      const { data: existingEmpresa } = await supabase
+        .from('empresas')
+        .select('empresa_id')
+        .eq('razon_social', formData.debtCompany)
+        .maybeSingle();
 
-      if (result.success) {
-        setStatusMessage({ type: 'success', text: result.message });
-        // Reset form
-        setFormData({
-          fullName: '',
-          idNumber: '',
-          state: '',
-          debtCompany: '',
-          estimatedDebt: '',
-          callDateTime: '',
-          contactConsent: false,
-          privacyConsent: false,
-          termsConsent: false,
-          dataUsageConsent: false,
-        });
-        setFile(null);
-        setTimeout(() => setSelectedPlan(null), 3000);
+      if (existingEmpresa) {
+        empresaId = existingEmpresa.empresa_id;
       } else {
-        setStatusMessage({ type: 'error', text: result.message });
+        const { data: newEmpresa, error: empresaError } = await supabase
+          .from('empresas')
+          .insert({ razon_social: formData.debtCompany, direccion: formData.state })
+          .select()
+          .single();
+        
+        if (empresaError) throw new Error(`Empresa error: ${empresaError.message}`);
+        empresaId = newEmpresa.empresa_id;
       }
-    } catch (error) {
-      setStatusMessage({ type: 'error', text: 'Failed to initiate protocol. Please check your connection.' });
+
+      // 2. Create Contacto
+      const { data: contacto, error: contactoError } = await supabase
+        .from('contactos')
+        .insert({
+          nombre_completo: formData.fullName,
+          identificacion: formData.idNumber,
+          empresa_id: empresaId,
+          estado: 'activo'
+        })
+        .select()
+        .single();
+
+      if (contactoError) throw new Error(`Contacto error: ${contactoError.message}`);
+      const contactoId = contacto.contacto_id;
+
+      // 3. Create Deuda
+      const { data: deuda, error: deudaError } = await supabase
+        .from('deudas')
+        .insert({
+          contacto_id: contactoId,
+          empresa_id: empresaId,
+          monto_estimado: parseFloat(formData.estimatedDebt || '0'),
+          moneda: 'ARS',
+          estado_deuda: 'pendiente'
+        })
+        .select()
+        .single();
+
+      if (deudaError) throw new Error(`Deuda error: ${deudaError.message}`);
+      const deudaId = deuda.deuda_id;
+
+      // 4. Create Consentimientos
+      const { error: consentError } = await supabase
+        .from('consentimientos')
+        .insert({
+          contacto_id: contactoId,
+          acepta_contacto: formData.contactConsent,
+          acepta_privacidad: formData.privacyConsent,
+          acepta_terminos: formData.termsConsent
+        });
+
+      if (consentError) throw new Error(`Consent error: ${consentError.message}`);
+
+      // 5. Create Llamada Programada (if provided)
+      if (formData.callDateTime) {
+        const { error: callError } = await supabase
+          .from('llamadas_programadas')
+          .insert({
+            deuda_id: deudaId,
+            fecha_hora_utc: new Date(formData.callDateTime).toISOString(),
+            estado_llamada: 'programada',
+            notas: `Protocol selected: ${selectedPlan}`
+          });
+
+        if (callError) throw new Error(`Call schedule error: ${callError.message}`);
+      }
+
+      // 6. Handle Files (if provided)
+      console.log('Iniciando carga de archivos para deuda_id:', deudaId);
+      if (files.length > 0) {
+        for (const file of files) {
+          const sanitizedName = formData.fullName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+          const fileExt = file.name.split('.').pop();
+          const fileName = `${sanitizedName}_${deudaId}_${Date.now()}.${fileExt}`;
+          const filePath = `documents/${fileName}`;
+
+          console.log(`Subiendo archivo: ${file.name} -> ${filePath}`);
+
+          const { error: uploadError } = await supabase.storage
+            .from('debt-documents')
+            .upload(filePath, file);
+
+          if (uploadError) {
+            console.error('Error al subir archivo a Supabase Storage:', uploadError);
+            throw new Error(`Error al subir el archivo ${file.name}: ${uploadError.message}`);
+          }
+
+          console.log(`Archivo subido con éxito: ${filePath}. Registrando en base de datos...`);
+
+          const { error: docError } = await supabase
+            .from('documentos_deuda')
+            .insert({
+              deuda_id: deudaId,
+              tipo_documento: file.type,
+              ruta_archivo: filePath
+            });
+          
+          if (docError) {
+            console.error('Error al registrar documento en la DB:', docError);
+            throw new Error(`Archivo subido pero no se pudo registrar: ${docError.message}`);
+          }
+        }
+      }
+
+      setStatusMessage({ 
+        type: 'success', 
+        text: 'Protocol deployment initiated successfully. Your information has been received, and our specialist team will contact you within the next week. Thank you for your trust in Debt Sentinel.' 
+      });
+
+      // Form reset logic removed from here to allow user to read message
+      // and will be handled by a manual 'Accept' button.
+      // setTimeout(() => setSelectedPlan(null), 5000);
+
+    } catch (error: any) {
+      console.error('Submission error:', error);
+      setStatusMessage({ type: 'error', text: error.message || 'Failed to initiate protocol. Please check your connection.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -280,6 +389,7 @@ export default function Page() {
                     onChange={handleInputChange}
                     placeholder="ENTER FULL NAME"
                     className="bg-black border border-white/10 p-4 text-white focus:outline-none focus:border-primary-container transition-colors rounded-none placeholder:text-white/10"
+                    required
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -291,6 +401,7 @@ export default function Page() {
                     onChange={handleInputChange}
                     placeholder="ID-XXXX-XXXX"
                     className="bg-black border border-white/10 p-4 text-white focus:outline-none focus:border-primary-container transition-colors rounded-none placeholder:text-white/10 font-numeric-data"
+                    required
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -302,6 +413,7 @@ export default function Page() {
                     onChange={handleInputChange}
                     placeholder="ENTER STATE/JURISDICTION"
                     className="bg-black border border-white/10 p-4 text-white focus:outline-none focus:border-primary-container transition-colors rounded-none placeholder:text-white/10"
+                    required
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -313,6 +425,7 @@ export default function Page() {
                     onChange={handleInputChange}
                     placeholder="COMPANY NAME"
                     className="bg-black border border-white/10 p-4 text-white focus:outline-none focus:border-primary-container transition-colors rounded-none placeholder:text-white/10"
+                    required
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -326,6 +439,7 @@ export default function Page() {
                       onChange={handleInputChange}
                       placeholder="0.00"
                       className="w-full bg-black border border-white/10 p-4 pl-8 text-white focus:outline-none focus:border-primary-container transition-colors rounded-none placeholder:text-white/10 font-numeric-data"
+                      required
                     />
                   </div>
                 </div>
@@ -337,6 +451,7 @@ export default function Page() {
                     value={formData.callDateTime}
                     onChange={handleInputChange}
                     className="bg-black border border-white/10 p-4 text-white focus:outline-none focus:border-primary-container transition-colors rounded-none font-numeric-data"
+                    required
                     style={{ colorScheme: 'dark' }}
                   />
                 </div>
@@ -347,11 +462,12 @@ export default function Page() {
                     <input 
                       type="file" 
                       onChange={handleFileChange}
+                      multiple
                       className="absolute inset-0 opacity-0 cursor-pointer"
                     />
                     <span className="material-symbols-outlined text-4xl text-white/20 group-hover:text-primary-container transition-colors mb-2 block">upload_file</span>
                     <p className="font-label-mono text-sm text-white/40 uppercase">
-                      {file ? `FILE: ${file.name}` : 'Click or drag to upload documentation'}
+                      {files.length > 0 ? `FILES SELECTED: ${files.length}` : 'Click or drag to upload documentation'}
                     </p>
                   </div>
                 </div>
@@ -364,6 +480,7 @@ export default function Page() {
                       checked={formData.contactConsent}
                       onChange={handleInputChange}
                       className="mt-1.5 accent-primary-container w-4 h-4"
+                      required
                     />
                     <span className="font-body-md text-sm text-on-surface-variant group-hover:text-white transition-colors">I consent to be contacted by Debt Sentinel analysts regarding my audit request.</span>
                   </label>
@@ -374,6 +491,7 @@ export default function Page() {
                       checked={formData.privacyConsent}
                       onChange={handleInputChange}
                       className="mt-1.5 accent-primary-container w-4 h-4"
+                      required
                     />
                     <span className="font-body-md text-sm text-on-surface-variant group-hover:text-white transition-colors">I have read and accept the <a href="/privacy-ledger" className="text-primary-container underline">Privacy Policy</a>.</span>
                   </label>
@@ -384,6 +502,7 @@ export default function Page() {
                       checked={formData.termsConsent}
                       onChange={handleInputChange}
                       className="mt-1.5 accent-primary-container w-4 h-4"
+                      required
                     />
                     <span className="font-body-md text-sm text-on-surface-variant group-hover:text-white transition-colors">I agree to the <a href="/terms-of-audit" className="text-primary-container underline">Additional Terms of Service</a>.</span>
                   </label>
@@ -394,15 +513,41 @@ export default function Page() {
                       checked={formData.dataUsageConsent}
                       onChange={handleInputChange}
                       className="mt-1.5 accent-primary-container w-4 h-4"
+                      required
                     />
-                    <span className="font-body-md text-sm text-on-surface-variant group-hover:text-white transition-colors">Acepto expresamente el uso y tratamiento de mis datos personales para fines de auditoría y gestión de deuda conforme a la ley vigente.</span>
+                    <span className="font-body-md text-sm text-on-surface-variant group-hover:text-white transition-colors">I expressly accept the use and processing of my personal data for audit and debt management purposes in accordance with current law.</span>
                   </label>
                 </div>
 
                 <div className="md:col-span-2 pt-8 flex flex-col items-center gap-4">
                   {statusMessage && (
-                    <div className={`w-full p-4 font-label-mono text-sm text-center ${statusMessage.type === 'success' ? 'bg-primary-container/20 text-primary-container border border-primary-container/30' : 'bg-red-500/20 text-red-500 border border-red-500/30 uppercase'}`}>
-                      {statusMessage.text}
+                    <div className={`w-full p-6 font-label-mono text-sm flex flex-col items-center gap-4 ${statusMessage.type === 'success' ? 'bg-primary-container/20 text-primary-container border border-primary-container/30' : 'bg-red-500/20 text-red-500 border border-red-500/30 uppercase'}`}>
+                      <div className="text-center">{statusMessage.text}</div>
+                      {statusMessage.type === 'success' && (
+                        <button 
+                          type="button"
+                          onClick={() => {
+                            setFormData({
+                              fullName: '',
+                              idNumber: '',
+                              state: '',
+                              debtCompany: '',
+                              estimatedDebt: '',
+                              callDateTime: '',
+                              contactConsent: false,
+                              privacyConsent: false,
+                              termsConsent: false,
+                              dataUsageConsent: false,
+                            });
+                            setFiles([]);
+                            setStatusMessage(null);
+                            setSelectedPlan(null);
+                          }}
+                          className="bg-primary-container text-black px-8 py-2 font-bold hover:bg-white transition-colors"
+                        >
+                          UNDERSTOOD / FINALIZE
+                        </button>
+                      )}
                     </div>
                   )}
                   <button 

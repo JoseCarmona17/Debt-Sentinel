@@ -4,11 +4,11 @@ import { supabase } from '@/lib/supabase';
 import { revalidatePath } from 'next/cache';
 
 export async function submitProtectionPlan(formData: FormData) {
-  // Verificación de credenciales para producción
+  // Production credential verification
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     return { 
       success: false, 
-      message: 'Configuración de servidor incompleta (faltan variables de entorno en Netlify).' 
+      message: 'Incomplete server configuration (missing environment variables on Netlify).' 
     };
   }
 
@@ -112,22 +112,22 @@ export async function submitProtectionPlan(formData: FormData) {
     console.log('File detected in action:', file ? `${file.name} (${file.size} bytes)` : 'No file');
 
     if (file && file.size > 0) {
+      const sanitizedName = fullName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
       const fileExt = file.name.split('.').pop();
-      const fileName = `${deudaId}_${Date.now()}.${fileExt}`;
+      const fileName = `${sanitizedName}_${deudaId}_${Date.now()}.${fileExt}`;
       const filePath = `documents/${fileName}`;
 
       console.log('Attempting upload to bucket "debt-documents" at path:', filePath);
 
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('debt-documents')
         .upload(filePath, file);
 
       if (uploadError) {
         console.error('UPLOAD ERROR:', uploadError);
-        // No lanzamos error aquí para que al menos la data de la DB se mantenga, 
-        // pero lo logueamos para saber qué falló.
+        throw new Error(`Storage error: ${uploadError.message}`);
       } else {
-        console.log('Upload successful:', uploadData);
+        console.log('Upload successful');
         const { error: docError } = await supabase
           .from('documentos_deuda')
           .insert({
@@ -136,7 +136,10 @@ export async function submitProtectionPlan(formData: FormData) {
             ruta_archivo: filePath
           });
         
-        if (docError) console.error('DOC TABLE ERROR:', docError);
+        if (docError) {
+          console.error('DOC TABLE ERROR:', docError);
+          throw new Error(`Error registering document: ${docError.message}`);
+        }
       }
     }
 
