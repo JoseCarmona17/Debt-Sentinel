@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import { submitProtectionPlan } from './actions';
 
 export default function Page() {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
@@ -27,6 +28,8 @@ export default function Page() {
   });
 
   const [file, setFile] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -41,6 +44,52 @@ export default function Page() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatusMessage(null);
+
+    try {
+      const data = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        data.append(key, value.toString());
+      });
+      if (file) {
+        data.append('file', file);
+      }
+      if (selectedPlan) {
+        data.append('plan', selectedPlan);
+      }
+
+      const result = await submitProtectionPlan(data);
+
+      if (result.success) {
+        setStatusMessage({ type: 'success', text: result.message });
+        // Reset form
+        setFormData({
+          fullName: '',
+          idNumber: '',
+          state: '',
+          debtCompany: '',
+          estimatedDebt: '',
+          callDateTime: '',
+          contactConsent: false,
+          privacyConsent: false,
+          termsConsent: false,
+          dataUsageConsent: false,
+        });
+        setFile(null);
+        setTimeout(() => setSelectedPlan(null), 3000);
+      } else {
+        setStatusMessage({ type: 'error', text: result.message });
+      }
+    } catch (error) {
+      setStatusMessage({ type: 'error', text: 'Failed to initiate protocol. Please check your connection.' });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -221,7 +270,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                 <div className="flex flex-col gap-2">
                   <label className="font-label-mono text-label-mono text-white/60 uppercase">Full Legal Name</label>
                   <input 
@@ -350,12 +399,25 @@ export default function Page() {
                   </label>
                 </div>
 
-                <div className="md:col-span-2 pt-8 flex justify-center">
+                <div className="md:col-span-2 pt-8 flex flex-col items-center gap-4">
+                  {statusMessage && (
+                    <div className={`w-full p-4 font-label-mono text-sm text-center ${statusMessage.type === 'success' ? 'bg-primary-container/20 text-primary-container border border-primary-container/30' : 'bg-red-500/20 text-red-500 border border-red-500/30 uppercase'}`}>
+                      {statusMessage.text}
+                    </div>
+                  )}
                   <button 
-                    type="button"
-                    className="bg-primary-container text-black font-label-mono font-bold uppercase py-4 px-12 hover:bg-white transition-colors shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-primary-container text-black font-label-mono font-bold uppercase py-4 px-12 hover:bg-white transition-colors shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                   >
-                    Initiate Protocol Deployment
+                    {isSubmitting ? (
+                      <>
+                        <span className="material-symbols-outlined animate-spin">sync</span>
+                        PROCESSING PROTOCOL...
+                      </>
+                    ) : (
+                      'Initiate Protocol Deployment'
+                    )}
                   </button>
                 </div>
               </form>
