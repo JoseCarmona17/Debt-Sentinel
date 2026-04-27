@@ -4,6 +4,14 @@ import { supabase } from '@/lib/supabase';
 import { revalidatePath } from 'next/cache';
 
 export async function submitProtectionPlan(formData: FormData) {
+  // Verificación de credenciales para producción
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return { 
+      success: false, 
+      message: 'Configuración de servidor incompleta (faltan variables de entorno en Netlify).' 
+    };
+  }
+
   try {
     const fullName = formData.get('fullName') as string;
     const idNumber = formData.get('idNumber') as string;
